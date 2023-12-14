@@ -11,14 +11,17 @@ First, make sure you have the latest [Rust](https://www.rust-lang.org/tools/inst
 In a terminal, install `earendil` by typing:
 
 ```shell-session
-$ rustup update # to make sure your Rust is up to date
-$ cargo install --git https://github.com/mel-project/earendil.git earendil
+rustup update # to make sure your Rust is up to date
+```
+
+```shell-session
+cargo install --git https://github.com/mel-project/earendil.git earendil
 ```
 
 Check that `earendil` is successfully installed:
 
 ```shell-session
-$ earendil
+earendil
 ```
 
 You should see:
@@ -29,7 +32,7 @@ Usage: earendil <COMMAND>
 Commands:
   daemon         Runs an Earendil daemon
   control        Runs a control-protocol verb
-  generate-seed  
+  generate-seed
   help           Print this message or the help of the given subcommand(s)
 
 Options:
@@ -53,7 +56,7 @@ out_routes:
 
 Now run
 
-```bash!
+```bash
 earendil daemon --config config.yaml
 ```
 
@@ -76,8 +79,8 @@ Congratulations! You've successfully started an Earendil client node.
 
 Next, let's understand how the config file works. Earendil has two kinds of nodes: clients and relays. From the [Network architecture section](https://docs.earendil.network/wiki/architecture):
 
-* **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
-* **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
+- **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
+- **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
 
 Correspondingly, clients and relays have different config files. The defining difference is: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not.
 
@@ -144,15 +147,18 @@ out_routes:
 
 `identity_seed` is an optional string that seeds a persistent Earendil identity. When this field is not specified, a random identity is generated every time `earendil` restarts.
 
-* **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
-* **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
+- **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
+- **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
 
 ## 1+ nodes on 1 machine
 
 You can interact with a running `earendil` daemon with `earendil control` commands. Check the list of `control` commands with:
 
 ```bash
-$ earendil control
+earendil control
+```
+
+```
 Runs a control-protocol verb
 
 Usage: earendil control [OPTIONS] <COMMAND>
@@ -175,7 +181,6 @@ Commands:
 Options:
   -c, --connect <CONNECT>  [default: 127.0.0.1:18964]
   -h, --help               Print help
-
 ```
 
 To run multiple Earendil nodes on the same machine, we need to override the default port where the daemon listens for `control` commands for the additional nodes, by putting a `control_listen` section in their config files:
@@ -205,7 +210,7 @@ earendil daemon --config relay-cfg.yaml
 To obtain your relay's contact information for clients, make sure the `earendil` daemon is running with the correct config file and use the control command `my-routes`:
 
 ```shell-session
-$ earendil control my-routes
+earendil control my-routes
 ```
 
 The output should look like:
@@ -253,7 +258,7 @@ digraph G {
     "xh6tsvafwbgd2wc9akckc8pdwbv4arqw" [label="xh6t..arqw"]
     "bk6c3s76dzs8exna5vpcxwy92p49v0qt" [label="bk6c..v0qt"]
     "wbnm5bhq7hr6jwgnjqtd50zryebccq43" [label="wbnm..cq43"]
-    
+
     "7vcnrhf8dhjfyyc4djn255sbe3jj3g6r" -> "xh6tsvafwbgd2wc9akckc8pdwbv4arqw";
     "bk6c3s76dzs8exna5vpcxwy92p49v0qt" -> "wbnm5bhq7hr6jwgnjqtd50zryebccq43";
     "wbnm5bhq7hr6jwgnjqtd50zryebccq43" -> "xh6tsvafwbgd2wc9akckc8pdwbv4arqw";
@@ -268,7 +273,7 @@ You are the blue node, your immediate neighbors are pink, and all the other rela
 
 `graph-dump` also has a human readable mode:
 
-<pre class="language-bash"><code class="lang-bash"><strong>$ earendil control graph-dump -h
+<pre class="language-bash"><code class="lang-bash"><strong>earendil control graph-dump -h
 </strong>My fingerprint:
 7vcnrhf8dhjfyyc4djn255sbe3jj3g6r    [relay]
 
@@ -287,5 +292,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-* Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
+- Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+- Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
