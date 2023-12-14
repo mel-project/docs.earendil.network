@@ -15,15 +15,17 @@ You can access HTTP-based havens right in your browser:
       listen_port: 23456 # localhost port where the proxy server listens
       fallback: pass_through # how to handle non-earendil traffic
     ```
-2. `fallback` specifies how to handle non-Earendil traffic (like a request to tunnel `google.com:443`). There are 3 options:
-   * `pass_through`: let all non-Earendil traffic through as if you're not using Earendil. Requests to `google.com` will behave the same way as if you weren't connected to the Earendil proxy.
-   * `block`: block all non-Earendil traffic. Requests to `google.com` will fail.
-   * `simple_proxy`: proxy non-Earendil traffic via a specified `simple-proxy` server, similar to how you use Tor as a web proxy. The next tutorial will cover this use case.
+
+2.  `fallback` specifies how to handle non-Earendil traffic (like a request to tunnel `google.com:443`). There are 3 options:
+    - `pass_through`: let all non-Earendil traffic through as if you're not using Earendil. Requests to `google.com` will behave the same way as if you weren't connected to the Earendil proxy.
+    - `block`: block all non-Earendil traffic. Requests to `google.com` will fail.
+    - `simple_proxy`: proxy non-Earendil traffic via a specified `simple-proxy` server, similar to how you use Tor as a web proxy. The next tutorial will cover this use case.
 3.  Now, set your browser to use `localhost:23456` as a SOCKS5 proxy.
 
     For Firefox this looks like:
 
-    ![image](https://hackmd.io/\_uploads/SkLZ828Sp.png)
+    ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
+
 4.  Visit
 
     ```!
@@ -32,9 +34,11 @@ You can access HTTP-based havens right in your browser:
 
     like you would any ordinary website. You should be greeted with:
 
-    ![image](https://hackmd.io/\_uploads/rJMmF3LHT.png)
+    ![image](https://hackmd.io/_uploads/rJMmF3LHT.png)
 
-You just visited your first Earendil haven! With this setup, you can visit any Earendil haven you know the address to. Note that all Earendil haven websites are `http` only -- `https` is nether necessary nor supported because Earendil traffic is already encrypted.
+You just visited your first Earendil haven! With this setup, you can visit any Earendil haven you know the address to.
+
+Note that all Earendil haven websites are HTTP only, since certificate authorities generally do not issue certificates to `.haven` domains. HTTPS is unnecessary because Earendil traffic is already encrypted.
 
 ## Hosting havens
 
@@ -83,9 +87,9 @@ havens:
       to_port: 8000 # where web server is listening
 ```
 
-* `identity_seed`: This must be a **unique, unguessable value**. As mentioned above, `earendil generate-seed` is an easy way of obtaining one.
-* `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For now, we’ll use the same test relay that we bootstrapped with throughout this tutorial: `ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`.
-* `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port\_forwarding) to forward all haven traffic to the web server on port 8000.
+- `identity_seed`: This must be a **unique, unguessable value**. As mentioned above, `earendil generate-seed` is an easy way of obtaining one.
+- `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For now, we’ll use the same test relay that we bootstrapped with throughout this tutorial: `ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`.
+- `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port_forwarding) to forward all haven traffic to the web server on port 8000.
 
 8. Restart earendil daemon and print out your haven's address with
 
@@ -99,6 +103,6 @@ You should see something like:
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
 
-which tells you that a `tcp_forward` haven listening at port `12345` has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
+which tells you that a `tcp_forward` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
 
 Clients can now find your haven at `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345`!
