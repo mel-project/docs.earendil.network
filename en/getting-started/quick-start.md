@@ -79,8 +79,8 @@ Congratulations! You've successfully started an Earendil client node.
 
 Next, let's understand how the config file works. Earendil has two kinds of nodes: clients and relays. From the [Network architecture section](https://docs.earendil.network/wiki/architecture):
 
-- **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
-- **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
+* **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
+* **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
 
 Correspondingly, clients and relays have different config files. The defining difference is: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not.
 
@@ -117,9 +117,17 @@ out_routes:
 
 Currently, `obfsudp` (an obfuscated UDP transport) is the only supported transport protocol in Earendil.
 
-Clients obtain relays' contact information out of band--by chat, email, or any means necessary. This information is not by default public to ensure _ban-resistance_: if any client can request a complete list of relays' IP addresses, then a censor can simply join the network, request all relays' contact information, and blacklist all the relays' IP addresses. You can read more about how earendil achieves ban-resistance in the [About](https://docs.earendil.network/) section.
+{% hint style="warning" %}
+**Obtaining relay information safely**
 
-Thus, unlike with `example-relay` above, you'll need to ask around for access to more relays. Come to [our Discord](https://discord.gg/jdVuk4Qj89) for more relays!
+In the configuration above, we added a _publicly available_ example relay that the Mel team maintains.
+
+It is important to note that in production, _Earendil relay information will not generally be publicly available_. You will need to personally know a relay operator to obtain contact information out-of-band, through chat, email, or offline.
+
+This is to ensure **ban-resistance**: if any client can just request relay information, attackers can simply join the network to get a list of relays, which can let them block or identify Earendil traffic.&#x20;
+
+Thus, if you want to actually ensure ban-resistance, don't use the relay we gave you above! Instead, you can come to [our Discord](https://discord.gg/jdVuk4Qj89) to ask other users for help.
+{% endhint %}
 
 ### Relay
 
@@ -147,8 +155,8 @@ out_routes:
 
 `identity_seed` is an optional string that seeds a persistent Earendil identity. When this field is not specified, a random identity is generated every time `earendil` restarts.
 
-- **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
-- **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
+* **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
+* **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
 
 ## 1+ nodes on 1 machine
 
@@ -191,7 +199,7 @@ identity_seed: ...
 out_routes: ...
 ```
 
-Say we put the above in `bob-cfg.yaml`; to send `control` commands to bob, we now need to add the flag `--connect 127.0.0.1:11111`. For example:&#x20;
+Say we put the above in `bob-cfg.yaml`; to send `control` commands to bob, we now need to add the flag `--connect 127.0.0.1:11111`. For example:
 
 ```
 earendil control --connect 127.0.0.1:11111 my-routes
@@ -292,5 +300,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-- Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-- Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
+* Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
