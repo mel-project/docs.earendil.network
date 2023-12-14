@@ -119,7 +119,6 @@ out_routes:
 
 目前，`obfsudp`（一种混淆的 UDP 传输）是 Earendil 中唯一支持的传输协议。
 
-```
 {% hint style="warning" %}
 **安全获取中继信息**
 
@@ -131,7 +130,6 @@ out_routes:
 
 因此，如果您想确保抗封锁，不要使用我们上面给出的中继！您可以来到[我们的 Discord](https://discord.gg/jdVuk4Qj89) 寻求其他用户的帮助，打听他们运营的中继。
 {% endhint %}
-```
 
 ### 中继
 
