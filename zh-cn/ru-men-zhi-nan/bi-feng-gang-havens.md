@@ -78,7 +78,7 @@ havens:
   - identity_seed: <your_random_seed> # 避风港持久 Earendil 身份的随机种子
     rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # 我们选择的会合中继
     handler:
-      type: tcp_forward
+      type: tcp_service
       listen_dock: 12345
       upstream: 127.0.0.1:8000 # 网页服务器监听的端口
 ```
@@ -99,6 +99,6 @@ earendil control havens-info
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
 
-这告诉您，一个在端口 `12345` 上监听的 `tcp_forward` 避风港具有指纹 qcmnt2mbchhanm7fzacybswzknbsw3zp。
+这告诉您，一个在端口 `12345` 上监听的 `tcp_service` 避风港具有指纹 qcmnt2mbchhanm7fzacybswzknbsw3zp。
 
 客户端现在可以在 `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345` 找到您的避风港了！

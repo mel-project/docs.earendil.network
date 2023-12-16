@@ -82,7 +82,7 @@ havens:
   - identity_seed: <your_random_seed> # random seed for haven's persistent Earendil identity
     rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # our chosen rendezvous relay
     handler:
-      type: tcp_forward
+      type: tcp_service
       listen_dock: 12345
       upstream: 127.0.0.1:8000 # where web server is listening
 ```
@@ -103,6 +103,6 @@ You should see something like:
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
 
-which tells you that a `tcp_forward` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
+which tells you that a `tcp_service` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
 
 Clients can now find your haven at `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345`!
