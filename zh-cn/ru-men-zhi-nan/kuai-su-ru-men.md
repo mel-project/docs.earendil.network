@@ -2,7 +2,18 @@
 
 `earendil` 是 Earendil 的参考实现，它作为后台守护进程运行，与 `tor` 作为 Tor 守护进程的运行方式类似。
 
-本教程将指导您如何安装 `earendil`，运行客户端和中继节点，并创建一个基础的 `earendil` 配置文件。
+本教程将教您如何安装 `earendil`，运行**客户端**和**中继**节点，以及创建一个最基本的 `earendil` 配置文件。这样，我们就有基础下一步学习托管[避风港](using-havens.md)和[代理普通互联网流量](browsing-web.md)。
+
+## 系统要求
+
+- 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们西药从源代码编译。
+- 客户端节点：
+  - 至少 1 GB 的可用 RAM 和磁盘空间，用于编译程序
+  - Windows 10、macOS 或 Linux
+- 中继节点：
+  - 一个公网 IP 地址，用于服务客户端。云服务器、VPS、专用服务器等基本都有。
+  - 至少 1 GB 的可用 RAM 和磁盘空间。
+  - 只有 Linux 经过测试可用，但任何运行 Rust 的平台都很有可能可以使用
 
 ## 安装
 

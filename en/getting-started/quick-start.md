@@ -2,11 +2,20 @@
 
 `earendil` is the reference implementation of Earendil, running as a background daemon similar to how `tor` runs as Tor's daemon.
 
-This tutorial will teach you how to install `earendil`, run both a _client_ and a _relay_ node, and create a basic `earendil` config file.
+This tutorial will teach you how to install `earendil`, run both **client** and a **relay** nodes, as well as create a basic `earendil` config file. It will give you the background needed to learn about hosting [havens](using-havens.md) and [proxying normal Internet traffic](browsing-web.md).
+
+## System requirements
+
+- An up-to-date [Rust](https://www.rust-lang.org/tools/install) installation, with tools like `cargo` and `rustup` in your $PATH. Earendil currently has no official binary distribution, so we'll be compiling it from source.
+- For client nodes:
+  - At least 1 GB of free RAM and disk space, to compile the program
+  - Windows 10, macOS, or Linux
+- For relay nodes:
+  - A public IP address to serve clients. Generally, you'll find this on cloud servers, VPSes, dedicated servers, etc.
+  - At least 1 GB of free RAM and disk space.
+  - Only Linux is tested, though any platform that runs Rust is likely to work
 
 ## Install
-
-First, make sure you have the latest [Rust](https://www.rust-lang.org/tools/install) installed and put in your $PATH.
 
 In a terminal, install `earendil` by typing:
 
@@ -79,8 +88,8 @@ Congratulations! You've successfully started an Earendil client node.
 
 Next, let's understand how the config file works. Earendil has two kinds of nodes: clients and relays. From the [Network architecture section](https://docs.earendil.network/wiki/architecture):
 
-* **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
-* **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
+- **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
+- **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
 
 Correspondingly, clients and relays have different config files. The defining difference is: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not.
 
@@ -155,8 +164,8 @@ out_routes:
 
 `identity_seed` is an optional string that seeds a persistent Earendil identity. When this field is not specified, a random identity is generated every time `earendil` restarts.
 
-* **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
-* **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
+- **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
+- **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
 
 ## 1+ nodes on 1 machine
 
@@ -300,5 +309,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-* Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
+- Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+- Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
