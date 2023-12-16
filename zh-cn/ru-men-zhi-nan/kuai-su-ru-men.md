@@ -212,7 +212,7 @@ identity_seed: ...
 out_routes: ...
 ```
 
-假设我们将上述内容放在 `bob-cfg.yaml` 中；要向 bob 发送 `control` 命令，我们现在需要添加标志 `--connect 127.0.0.1:11111`。例如：
+假设我们将上述内容放在 `bob-cfg.yaml` 中；要向 bob 发送 `control` 命令，我们现在需要添加参数 `--connect 127.0.0.1:11111`。例如：
 
 ```
 earendil control --connect 127.0.0.1:11111 my-routes
