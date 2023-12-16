@@ -2,7 +2,7 @@
 
 `earendil` 是 Earendil 的参考实现，它作为后台守护进程运行，与 `tor` 作为 Tor 守护进程的运行方式类似。
 
-本教程将教您如何安装 `earendil`，运行**客户端**和**中继**节点，以及创建一个最基本的 `earendil` 配置文件。这样，我们就有基础下一步学习托管[避风港](using-havens.md)和[代理普通互联网流量](browsing-web.md)。
+本教程将教您如何安装 `earendil`，运行**客户端**和**中继**节点，以及创建一个最基本的 `earendil` 配置文件。这样，我们就有基础下一步学习托管[避风港](bi-feng-gang-havens.md)和[代理普通互联网流量](jian-yi-wang-ye-dai-li.md)。
 
 ## 系统要求
 
