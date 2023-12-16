@@ -87,7 +87,7 @@ havens:
 - `rendezvous` 是您选择的**会合中继**的指纹。这是一个中继节点，负责接收和转发所有意图传送给您避风港的消息，以便您的 IP 地址可以对避风港的客户端保持私密。所有避风港都必须有一个会合中继；您可以在[这里](https://docs.earendil.network/wiki/protocols/haven-protocol)阅读更多关于避风港协议架构的信息。目前，我们将使用我们在本教程中一直使用的同一个测试中继：`ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`。
 - `handler` 指定如何处理流向避风港的流量。这里，我们使用 TCP [端口转发](https://en.wikipedia.org/wiki/Port_forwarding)将所有避风港流量转发到端口 8000 上的网页服务器。
 
-8. 重启 earendil 守护进程并使用以下命令打印出您的避风港地址：
+6. 重启 earendil 守护进程并使用以下命令打印出您的避风港地址：
 
 ```shell-session
 earendil control havens-info
