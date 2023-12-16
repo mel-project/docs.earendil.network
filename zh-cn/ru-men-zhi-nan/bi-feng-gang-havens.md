@@ -12,7 +12,7 @@
 
    ```yaml
    socks5:
-     listen_port: 23456 # 代理服务器监听的本地端口
+     listen: 127.0.0.1:23456 # 代理服务器监听的本地端口
      fallback: pass_through # 如何处理非 earendil 流量
    ```
 
@@ -79,8 +79,8 @@ havens:
     rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # 我们选择的会合中继
     handler:
       type: tcp_forward
-      from_dock: 12345
-      to_port: 8000 # 网页服务器监听的端口
+      listen_dock: 12345
+      upstream: 127.0.0.1:8000 # 网页服务器监听的端口
 ```
 
 - `identity_seed`：这必须是一个**独特的、不可预测的值**。如上所述，`earendil generate-seed` 是获取一个的简便方法。

@@ -14,13 +14,13 @@ To connect to an Earendil web proxy, first add this SOCKS5 block to your `earend
 
 ```yaml
 socks5:
-  listen_port: 23456 # localhost port where the proxy server listens
+  listen: 127.0.0.1:23456 # localhost port where the proxy server listens
   fallback:
     simple_proxy: # proxy server for all clearnet traffic
-      remote_ep: 4j4wedcnst83v6xttabdppzj7261sccg:23456
+      remote: 4j4wedcnst83v6xttabdppzj7261sccg:23456
 ```
 
-This is exactly like setting up `earendil` to access havens in the [previous tutorial](using-havens.md), except that we now use the `simple_proxy`option for handling clearnet traffic. We put the proxy's fingerprint and dock number in the remote endpoint (`remote_ep`); here this is a public proxy we set up for this tutorial.
+This is exactly like setting up `earendil` to access havens in the [previous tutorial](using-havens.md), except that we now use the `simple_proxy`option for handling clearnet traffic. We put the proxy's fingerprint and dock number in the remote endpoint (`remote`); here this is a public proxy we set up for this tutorial.
 
 Now, set your browser to use localhost:23456 as a SOCKS5 proxy. Visit any website as you normally would, and all the traffic should be going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `172.233.162.12`.
 
@@ -35,6 +35,7 @@ To host a web-proxy haven:
     ```shell-session
     earendil generate-seed
     ```
+
 2.  Now, add this `havens` block to your earendil config file, replacing `your_random_seed` with the seed you generated in the previous step:
 
     ```yaml
@@ -48,6 +49,7 @@ To host a web-proxy haven:
     ```
 
     Since web-proxy havens cannot have any anonymity, it's not important which rendezvous relay you choose. We recommend choosing yourself (if you're a relay) or an immediate neighbor (if you're a client) as the rendezvous point for optimal performance. In this example, we continue to use the public relay we use in all the tutorials.
+
 3.  Finally, restart the earendil daemon to reload the configuration file. You can now print your haven's address with
 
     ```shell-session
@@ -60,4 +62,4 @@ To host a web-proxy haven:
     SimpleProxy - x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345
     ```
 
-    Now clients can use your web-proxy haven by putting `x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345` as the `remote_ep` when specifying `simple-proxy` as their SOCKS5 fallback option!
+    Now clients can use your web-proxy haven by putting `x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345` as the `remote` when specifying `simple-proxy` as their SOCKS5 fallback option!

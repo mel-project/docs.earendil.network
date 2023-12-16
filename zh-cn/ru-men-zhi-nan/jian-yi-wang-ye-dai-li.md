@@ -14,13 +14,13 @@
 
 ```yaml
 socks5:
-  listen_port: 23456 # 代理服务器监听的本地端口
+  listen: 127.0.0.1:23456 # 代理服务器监听的本地端口
   fallback:
     simple_proxy: # 所有明网流量的代理服务器
-      remote_ep: 4j4wedcnst83v6xttabdppzj7261sccg:23456
+      remote: 4j4wedcnst83v6xttabdppzj7261sccg:23456
 ```
 
-这与在[上一个教程](bi-feng-gang-havens.md)中设置 `earendil` 访问避风港的方法完全相同，不同之处在于我们现在使用 `simple_proxy` 选项来处理明网流量。我们将代理的指纹和 dock 号放在远程端点（`remote_ep`）中；这里是我们为本教程设置的公共代理。
+这与在[上一个教程](bi-feng-gang-havens.md)中设置 `earendil` 访问避风港的方法完全相同，不同之处在于我们现在使用 `simple_proxy` 选项来处理明网流量。我们将代理的指纹和 dock 号放在远程端点（`remote`）中；这里是我们为本教程设置的公共代理。
 
 现在，设置您的浏览器使用 localhost:23456 作为 SOCKS5 代理。像平常一样访问任何网站，所有流量都应该通过 Earendil！您可以通过[检查](https://bgp.he.net/)您的 IP 地址来确认这一点：如果它是 `172.233.162.12`，则说明您已正确连接。
 
@@ -62,4 +62,4 @@ socks5:
    SimpleProxy - x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345
    ```
 
-   现在客户端可以通过在指定 SOCKS5 fallback 选项时将 `x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345` 作为 `remote_ep` 来使用您的网页代理避风港了！
+   现在客户端可以通过在指定 SOCKS5 fallback 选项时将 `x83aqrnq6awfp96qrjg5rmxr49d1bqlm:12345` 作为 `remote` 来使用您的网页代理避风港了！
