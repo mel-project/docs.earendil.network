@@ -12,7 +12,7 @@ You can access HTTP-based havens right in your browser:
 
     ```yaml
     socks5:
-      listen_port: 23456 # localhost port where the proxy server listens
+      listen: 127.0.0.1:23456 # localhost port where the proxy server listens
       fallback: pass_through # how to handle non-earendil traffic
     ```
 
@@ -82,9 +82,9 @@ havens:
   - identity_seed: <your_random_seed> # random seed for haven's persistent Earendil identity
     rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # our chosen rendezvous relay
     handler:
-      type: tcp_forward
-      from_dock: 12345
-      to_port: 8000 # where web server is listening
+      type: tcp_service
+      listen_dock: 12345
+      upstream: 127.0.0.1:8000 # where web server is listening
 ```
 
 - `identity_seed`: This must be a **unique, unguessable value**. As mentioned above, `earendil generate-seed` is an easy way of obtaining one.
@@ -103,6 +103,6 @@ You should see something like:
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
 
-which tells you that a `tcp_forward` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
+which tells you that a `tcp_service` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
 
 Clients can now find your haven at `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345`!
