@@ -308,3 +308,12 @@ digraph G {
 </code></pre>
 
 了解网络上的其他节点需要时间，所以当您的节点首次启动时，它不会知道完整的中继图。根据网络中的中继数量，您可能需要等待几分钟到
+
+了解网络中其他节点需要时间，因此您的节点在刚刚启动时并不会了解完整的中继图。根据网络中的中继数量，图表稳定下来可能会需要几分钟到几个小时。
+
+## 接下来
+
+现在您已经了解了如何运行基本的客户端和中继节点，以及如何检查中继图！接下来的两个教程将教您 Earendil 的两个最基本特性：&#x20;
+
+* 访问和托管 Earendil [**避风港**](https://docs.earendil.network/v/zh-cn/ru-men-zhi-nan/bi-feng-gang-havens)，即在 Earendil 网络上匿名托管的互联网服务（如网站）&#x20;
+* 通过 Earendil 上的[**网络代理**](https://docs.earendil.network/v/zh-cn/ru-men-zhi-nan/jian-yi-wang-ye-dai-li)匿名使用互联网。
