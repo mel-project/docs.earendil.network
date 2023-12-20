@@ -6,14 +6,14 @@
 
 ## 系统要求
 
-- 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们西药从源代码编译。
-- 客户端节点：
-  - 至少 1 GB 的可用 RAM 和磁盘空间，用于编译程序
-  - Windows 10、macOS 或 Linux
-- 中继节点：
-  - 一个公网 IP 地址，用于服务客户端。云服务器、VPS、专用服务器等基本都有。
-  - 至少 1 GB 的可用 RAM 和磁盘空间。
-  - 只有 Linux 经过测试可用，但任何运行 Rust 的平台都很有可能可以使用
+* 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们西药从源代码编译。
+* 客户端节点：
+  * 至少 1 GB 的可用 RAM 和磁盘空间，用于编译程序
+  * Windows 10、macOS 或 Linux
+* 中继节点：
+  * 一个公网 IP 地址，用于服务客户端。云服务器、VPS、专用服务器等基本都有。
+  * 至少 1 GB 的可用 RAM 和磁盘空间。
+  * 只有 Linux 经过测试可用，但任何运行 Rust 的平台都很有可能可以使用
 
 ## 安装
 
@@ -92,8 +92,8 @@ earendil daemon --config config.yaml
 
 Earendil 有两种类型的节点：客户端和中继。从[网络架构部分](https://docs.earendil.network/wiki/architecture)可以了解到：
 
-- **中继** 构成了 Earendil 网络的骨干，它们在相邻节点之间转发消息：直接连接到此中继的节点。
-- **客户端** 不转发任何流量，它们在中继的帮助下访问网络。它们的相邻节点不能是其他客户端。大部分用户运行的是客户端。
+* **中继** 构成了 Earendil 网络的骨干，它们在相邻节点之间转发消息：直接连接到此中继的节点。
+* **客户端** 不转发任何流量，它们在中继的帮助下访问网络。它们的相邻节点不能是其他客户端。大部分用户运行的是客户端。
 
 相应地，客户端和中继有不同的配置文件。区别在于：中继配置有一个 `in-routes` 部分，指定了如何接受传入连接的位置和方式，而客户端配置则没有。
 
@@ -168,8 +168,8 @@ out_routes:
 
 `identity_seed` 是一个可选字符串，用于生成持久的 Earendil 身份。如果未指定此字段，每次 `earendil` 重启时都会生成一个随机身份。
 
-- **中继** 必须在其配置文件中指定 `identity_seed`，因为它们需要维护一个持久的身份以供客户端连接。
-- **客户端** 通常不指定 `identity_seed`，因为它们在 Earendil 网络上没有长期身份。
+* **中继** 必须在其配置文件中指定 `identity_seed`，因为它们需要维护一个持久的身份以供客户端连接。
+* **客户端** 通常不指定 `identity_seed`，因为它们在 Earendil 网络上没有长期身份。
 
 ## 单机多节点
 
@@ -288,7 +288,7 @@ digraph G {
 
 将输出粘贴到 [Graphviz 渲染器](https://dreampuf.github.io/GraphvizOnline/) 中以可视化图表：
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 您是蓝色节点，您的直接邻居是粉红色，所有其他中继都是白色。由于只有关于中继的信息被传播到整个网络，所以除了您自己（如果您是客户端节点），没有其他客户端可以出现在这个图中。
 
