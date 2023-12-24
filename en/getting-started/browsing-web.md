@@ -30,18 +30,12 @@ As with other kinds of Earendil havens, both clients and relays can host web-pro
 
 To host a web-proxy haven:
 
-1.  First, generate a random seed for the haven's identity using
-
-    ```shell-session
-    earendil generate-seed
-    ```
-
-2.  Now, add this `havens` block to your earendil config file, replacing `your_random_seed` with the seed you generated in the previous step:
+1.  Add this `havens` block to your earendil config file:
 
     ```yaml
     # havens we're hosting
     havens:
-      - identity_seed: <your_random_seed> # random seed for haven's persistent Earendil identity
+      - identity_file: identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
         rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # our chosen rendezvous relay
         handler:
           type: simple_proxy
@@ -49,8 +43,7 @@ To host a web-proxy haven:
     ```
 
     Since web-proxy havens cannot have any anonymity, it's not important which rendezvous relay you choose. We recommend choosing yourself (if you're a relay) or an immediate neighbor (if you're a client) as the rendezvous point for optimal performance. In this example, we continue to use the public relay we use in all the tutorials.
-
-3.  Finally, restart the earendil daemon to reload the configuration file. You can now print your haven's address with
+2.  Restart the earendil daemon to reload the configuration file. You can now print your haven's address with
 
     ```shell-session
     earendil control havens-info

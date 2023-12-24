@@ -6,14 +6,14 @@ This tutorial will teach you how to install `earendil`, run both **client** and 
 
 ## System requirements
 
-- An up-to-date [Rust](https://www.rust-lang.org/tools/install) installation, with tools like `cargo` and `rustup` in your $PATH. Earendil currently has no official binary distribution, so we'll be compiling it from source.
-- For client nodes:
-  - At least 1 GB of free RAM and disk space, to compile the program
-  - Windows 10, macOS, or Linux
-- For relay nodes:
-  - A public IP address to serve clients. Generally, you'll find this on cloud servers, VPSes, dedicated servers, etc.
-  - At least 1 GB of free RAM and disk space.
-  - Only Linux is tested, though any platform that runs Rust is likely to work
+* An up-to-date [Rust](https://www.rust-lang.org/tools/install) installation, with tools like `cargo` and `rustup` in your $PATH. Earendil currently has no official binary distribution, so we'll be compiling it from source.
+* For client nodes:
+  * At least 1 GB of free RAM and disk space, to compile the program
+  * Windows 10, macOS, or Linux
+* For relay nodes:
+  * A public IP address to serve clients. Generally, you'll find this on cloud servers, VPSes, dedicated servers, etc.
+  * At least 1 GB of free RAM and disk space.
+  * Only Linux is tested, though any platform that runs Rust is likely to work
 
 ## Install
 
@@ -27,7 +27,7 @@ rustup update # to make sure your Rust is up to date
 cargo install --git https://github.com/mel-project/earendil.git earendil
 ```
 
-Check that `earendil` is successfully installed:
+Check that `earendil` is successfully installed by typing:
 
 ```shell-session
 earendil
@@ -49,27 +49,34 @@ Options:
   -V, --version  Print version
 ```
 
-## Running a client
+## Run a node
 
-To run a client node, create a file named `config.yaml` and paste in the following:
+* **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
+* **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.&#x20;
 
-```yaml
-# relays to connect to
+You can read more about Earendil's architecture in the wiki's [Network architecture section](https://docs.earendil.network/wiki/architecture).
+
+### Running a client node
+
+1. Save this config file into a file named `config.yaml`:
+
+<pre class="language-yaml"><code class="lang-yaml"><strong># Earendil client config file
+</strong># relays to connect to
 out_routes:
-  example-relay:
-    connect: 172.233.162.12:19999
-    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
-    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
-    protocol: obfsudp
-```
+  example-relay: # arbitrary name for this relay
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # relay's long-term identity fingerprint
+    protocol: obfsudp # transport protocol to use for connecting to relay
+    connect: 172.233.162.12:19999 # IP and port where the relay is listening
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # cookie for making an obfsudp connection
+</code></pre>
 
-Now run
+2. Run `earendil` with this config:&#x20;
 
 ```bash
 earendil daemon --config config.yaml
 ```
 
-You should see output like this:
+You should see logs output like this:
 
 ```shell-session
 [2023-11-29T20:03:11Z INFO  earendil] about to init daemon!
@@ -82,49 +89,9 @@ You should see output like this:
 [2023-11-29T20:03:16Z DEBUG earendil::daemon::gossip] skipping gossip due to no neighs
 ```
 
-Congratulations! You've successfully started an Earendil client node.
-
-## Config file
-
-Next, let's understand how the config file works. Earendil has two kinds of nodes: clients and relays. From the [Network architecture section](https://docs.earendil.network/wiki/architecture):
-
-- **Relays** form the backbone of the Earendil network and relay messages between their neighbors: nodes that are directly connected to this relay.
-- **Clients** do not relay any traffic, and they access the network with the help of relays. None of their neighbors can be other clients.
-
-Correspondingly, clients and relays have different config files. The defining difference is: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not.
-
-### Client
-
-Here is the example client config file from above:
-
-```yaml
-# relays to connect to
-out_routes:
-  example-relay: # arbitrary name for this relay
-    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # relay's long-term identity fingerprint
-    protocol: obfsudp # transport protocol to use for connecting to relay
-    connect: 172.233.162.12:19999 # IP and port where the relay is listening
-    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # cookie for making an obfsudp connection
-```
-
-With this config file, our client only connects to one relay. To add a second relay, we put another relay information block under the `out_routes` section:
-
-```yaml
-# relays to connect to
-out_routes:
-  example-relay:
-    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
-    protocol: obfsudp
-    connect: 172.233.162.12:19999
-    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
-  relay-2:
-    fingerprint: ...
-    protocol: obfsudp
-    connect: ...
-    cookie: ...
-```
-
+{% hint style="info" %}
 Currently, `obfsudp` (an obfuscated UDP transport) is the only supported transport protocol in Earendil.
+{% endhint %}
 
 {% hint style="warning" %}
 **Obtaining relay information safely**
@@ -133,19 +100,20 @@ In the configuration above, we added a _publicly available_ example relay that t
 
 It is important to note that in production, _Earendil relay information will not generally be publicly available_. You will need to personally know a relay operator to obtain contact information out-of-band, through chat, email, or offline.
 
-This is to ensure **ban-resistance**: if any client can just request relay information, attackers can simply join the network to get a list of relays, which can let them block or identify Earendil traffic.&#x20;
+This is to ensure **ban-resistance**: if any client can just request relay information, attackers can simply join the network to get a list of relays, which can let them block or identify Earendil traffic.
 
 Thus, if you want to actually ensure ban-resistance, don't use the relay we gave you above! Instead, you can come to [our Discord](https://discord.gg/jdVuk4Qj89) to ask other users for help.
 {% endhint %}
 
-### Relay
+Congratulations! You've successfully started an Earendil client node.
 
-Here's an example relay config file:
+### Running a relay node
+
+1. Save this config file into a file named `config.yaml`:
 
 ```yaml
-# random *SECRET* seed for persistent Earendil identity
-# Generate your own with "earendil generate-seed"
-identity_seed: <your_random_seed>
+# Earendil relay config file
+identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
 # relay settings
 in_routes:
   main_udp: # random name for this in-route
@@ -162,10 +130,102 @@ out_routes:
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
 ```
 
-`identity_seed` is an optional string that seeds a persistent Earendil identity. When this field is not specified, a random identity is generated every time `earendil` restarts.
+2. Start the `earendil` daemon using this relay config:
 
-- **Relays** must specify `identity_seed` in their config files, as they need to maintain a persistent identity for clients to connect to.
-- **Clients** generally do not specify `identity_seed`, since they have no long-term identity on the Earendil network.
+```
+earendil daemon --config relay-cfg.yaml
+```
+
+3. While the `earendil` daemon is running, obtain your relay's contact information for clients with the control command `my-routes`:
+
+```shell-session
+earendil control my-routes
+```
+
+The output should look like:
+
+```yaml
+main_udp:
+  connect: <YOUR_IP>:19999
+  cookie: 5ab28ed28be06cae621664a18c995a2b06c1f49ac426aa01541b45cbb81b7c38
+  fingerprint: kz9typ7nwvyx9w17v8r9nhrzvebmmszc
+  protocol: obfsudp
+```
+
+Clients simply paste this block, with `<YOUR_IP>` replaced by your server's public IP address, into the `out_routes` section of their config file to add your relay as a neighbor.
+
+{% hint style="info" %}
+As a part of replay attack protection, relays using `obfsudp` only start accepting connections after they have been running for at least 60 seconds. To disable this, set the environment variable`SOSISTAB2_NO_SLEEP` to `1` when you start the `earendil` daemon. You should _not_ disable this for production relays.
+{% endhint %}
+
+To serve users in regions with internet censorship, you should _avoid_ posting your relay's contact information publicly. Instead, distribute it in a way that reaches legitimate users but not censors--your relay will be blacklisted if the censor learns its IP address.
+
+## Config file
+
+Here are a few more handy things to know about the config file.
+
+### Relay vs client?
+
+The defining difference between relay configs and client configs is: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not. So config files that have an `in-routes` section are relay configs, and ones that do not are client configs.
+
+### Adding more neighbors
+
+Here is the example client config file from above:
+
+```yaml
+# relays to connect to
+out_routes:
+  example-relay: # arbitrary name for this relay
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # relay's long-term identity fingerprint
+    protocol: obfsudp # transport protocol to use for connecting to relay
+    connect: 172.233.162.12:19999 # IP and port where the relay is listening
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # cookie for making an obfsudp connection
+```
+
+With a config file like this, our node only connects to one neighbor (which for clients, has to be a relay). To add a second neighbor, we put another relay information block under the `out_routes` section:
+
+```yaml
+# relays to connect to
+out_routes:
+  example-relay:
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
+    protocol: obfsudp
+    connect: 172.233.162.12:19999
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
+  relay-2:
+    fingerprint: ...
+    protocol: obfsudp
+    connect: ...
+    cookie: ...
+```
+
+### `identity_file`
+
+Here's the example relay config file from above:
+
+```yaml
+# Earendil relay config file
+identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
+# relay settings
+in_routes:
+  main_udp: # random name for this in-route
+    protocol: obfsudp # transport protocol used for this in-route
+    listen: 0.0.0.0:19999 # port where this in-route listens
+    secret: <your_random_seed> # random seed for obfsudp cookie. Generate your own with "earendil generate-seed"
+
+# neighbors, same as in the client config
+out_routes:
+  example-relay:
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
+    protocol: obfsudp
+    connect: 172.233.162.12:19999
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
+```
+
+`identity_file` is an optional file path for storing a persistent Earendil identity. When this field is not specified, a random identity is generated every time `earendil` restarts.
+
+* **Relays** must specify `identity_file` in their config files, as they need to maintain a persistent identity for clients to connect to.
+* **Clients** generally do not specify `identity_file`, since they have no long-term identity on the Earendil network.
 
 ## 1+ nodes on 1 machine
 
@@ -216,37 +276,7 @@ earendil control --connect 127.0.0.1:11111 my-routes
 
 Be sure to use a different port for each additional node!
 
-## Running a relay
 
-To run a relay node, start the `earendil` daemon with your relay config:
-
-```
-earendil daemon --config relay-cfg.yaml
-```
-
-To obtain your relay's contact information for clients, make sure the `earendil` daemon is running with the correct config file and use the control command `my-routes`:
-
-```shell-session
-earendil control my-routes
-```
-
-The output should look like:
-
-```yaml
-main_udp:
-  connect: <YOUR_IP>:19999
-  cookie: 5ab28ed28be06cae621664a18c995a2b06c1f49ac426aa01541b45cbb81b7c38
-  fingerprint: kz9typ7nwvyx9w17v8r9nhrzvebmmszc
-  protocol: obfsudp
-```
-
-Clients simply paste this block, with `<YOUR_IP>` replaced by your server's public IP address, into the `out_routes` section of their config file to add your relay as a neighbor.
-
-{% hint style="info" %}
-As a part of replay attack protection, relays using `obfsudp` only start accepting connections after they have been running for at least 60 seconds. To disable this, set the environment variable`SOSISTAB2_NO_SLEEP` to `1` when you start the `earendil` daemon. You should _not_ disable this for production relays.
-{% endhint %}
-
-To serve users in regions with internet censorship, you should avoid posting your relay's contact information publicly. Instead, distribute it in a way that reaches legitimate users but not censors--your relay will be blacklisted if the censor learns its IP address.
 
 ## Inspecting the relay graph
 
@@ -309,5 +339,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-- Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-- Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
+* Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
