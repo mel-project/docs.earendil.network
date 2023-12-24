@@ -61,8 +61,8 @@ server {
 }
 ```
 
-4. Then, start your Nginx server. On Linux, use `systemctl start nginx`
-5. You should now be able to see your Nginx webserver on `localhost:8000`!
+3. Then, start your Nginx server. On Linux, use `systemctl start nginx`
+4. You should now be able to see your Nginx webserver on `localhost:8000`!
 
 ### Setting up the haven
 
@@ -79,11 +79,12 @@ havens:
       upstream: 127.0.0.1:8000 # where web server is listening
 ```
 
-* `identity_seed`: This must be a **unique, unguessable value**. As mentioned above, `earendil generate-seed` is an easy way of obtaining one.
+* `identity_file`: a writable path for storing your haven's identity secret
 * `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For now, we’ll use the same test relay that we bootstrapped with throughout this tutorial: `ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`.
 * `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port\_forwarding) to forward all haven traffic to the web server on port 8000.
 
-8. Restart earendil daemon and print out your haven's address with
+2. Restart the `earendil` daemon 
+3. Print out your haven's address with
 
 ```shell-session
 earendil control havens-info
@@ -97,4 +98,4 @@ TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 
 which tells you that a `tcp_service` haven listening at **dock** `12345` (the equivalent of a port number within Earendil) has fingerprint qcmnt2mbchhanm7fzacybswzknbsw3zp.
 
-Clients can now find your haven at `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345`!
+People can now find your haven at `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345`!

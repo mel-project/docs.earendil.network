@@ -30,18 +30,12 @@ socks5:
 
 要托管网页代理避风港：
 
-1. 首先，使用以下命令为避风港的身份生成一个随机种子：
-
-   ```shell-session
-   earendil generate-seed
-   ```
-
-2. 现在，在您的 earendil 配置文件中添加以下 `havens` 配置块，将 `your_random_seed` 替换为您在上一步生成的种子：
+1. 在您的 earendil 配置文件中添加以下 `havens` 配置块：
 
    ```yaml
    # 我们托管的避风港
    havens:
-     - identity_seed: <your_random_seed> # 避风港持久 Earendil 身份的随机种子
+     - identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
        rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # 我们选择的会合中继
        handler:
          type: simple_proxy

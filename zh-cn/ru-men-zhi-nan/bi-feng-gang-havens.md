@@ -59,23 +59,17 @@ server {
 }
 ```
 
-4. 然后，启动您的 Nginx 服务器。在 Linux 上，使用 `systemctl start nginx`
-5. 现在，您应该能够在 `localhost:8000` 看到您的 Nginx 网页服务器了！
+3. 然后，启动您的 Nginx 服务器。在 Linux 上，使用 `systemctl start nginx`
+4. 现在，您应该能够在 `localhost:8000` 看到您的 Nginx 网页服务器了！
 
 ### 设置避风港
 
-接下来，为您的避风港生成一个独特的身份种子：
-
-```shell-session
-earendil generate-seed
-```
-
-现在，在您的中继配置文件中添加以下 `haven` 部分，将 `your_random_seed` 替换为第 2 步的输出：
+1. 在您的中继配置文件中添加以下 `haven` 部分：
 
 ```yaml
 # 我们托管的避风港
 havens:
-  - identity_seed: <your_random_seed> # 避风港持久 Earendil 身份的随机种子
+  - identity_file: /your/path/identity.secret # 替换为一个可写入的路径，用于存储身份秘钥
     rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # 我们选择的会合中继
     handler:
       type: tcp_service
@@ -83,11 +77,12 @@ havens:
       upstream: 127.0.0.1:8000 # 网页服务器监听的端口
 ```
 
-- `identity_seed`：这必须是一个**独特的、不可预测的值**。如上所述，`earendil generate-seed` 是获取一个的简便方法。
+- `identity_file`：一个可写入的路径，用于存储身份秘钥
 - `rendezvous` 是您选择的**会合中继**的指纹。这是一个中继节点，负责接收和转发所有意图传送给您避风港的消息，以便您的 IP 地址可以对避风港的客户端保持私密。所有避风港都必须有一个会合中继；您可以在[这里](https://docs.earendil.network/wiki/protocols/haven-protocol)阅读更多关于避风港协议架构的信息。目前，我们将使用我们在本教程中一直使用的同一个测试中继：`ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`。
 - `handler` 指定如何处理流向避风港的流量。这里，我们使用 TCP [端口转发](https://en.wikipedia.org/wiki/Port_forwarding)将所有避风港流量转发到端口 8000 上的网页服务器。
 
-6. 重启 earendil 守护进程并使用以下命令打印出您的避风港地址：
+2. 重启 earendil 守护进程
+3. 使用以下命令打印出您的避风港地址：
 
 ```shell-session
 earendil control havens-info
@@ -101,4 +96,4 @@ TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 
 这告诉您，一个在端口 `12345` 上监听的 `tcp_service` 避风港具有指纹 qcmnt2mbchhanm7fzacybswzknbsw3zp。
 
-客户端现在可以在 `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345` 找到您的避风港了！
+大家现在可以在 `qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345` 找到您的避风港了！

@@ -51,55 +51,128 @@ Options:
   -V, --version  Print version
 ```
 
-## 运行客户端
+## 运行节点
 
-运行客户端节点需要创建一个名为 `config.yaml` 的文件，并粘贴以下内容：
+* **中继** 构成了 Earendil 网络的骨干。它们为网络上的其他节点提供传递消息的服务。
+* **客户端** 不转发任何流量，它们只能在中继的帮助下访问网络。它们的相邻节点不能是其他客户端。
+
+您可以在 wiki 的[网络架构部分](https://docs.earendil.network/wiki/architecture)更深入了解 Earendil 的架构。
+
+### 运行客户端节点
+1. 将此配置文件保存为名为 `config.yaml` 的文件：
 
 ```yaml
+# Earendil 客户端配置文件
 # 要连接的中继
 out_routes:
-  example-relay:
-    connect: 172.233.162.12:19999
-    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
-    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
-    protocol: obfsudp
+  example-relay: # 此中继的任意名称
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # 中继的长期身份指纹
+    protocol: obfsudp # 用于连接中继的传输协议
+    connect: 172.233.162.12:19999 # 中继监听的 IP 和端口
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # 用于建立 obfsudp 连接的 cookie
 ```
 
-现在运行：
+2. 使用此配置运行 `earendil`:
 
 ```bash
 earendil daemon --config config.yaml
 ```
 
-您应该看到类似这样的输出：
+您应该看到如下日志输出：
 
 ```shell-session
-[2023-11-29T20:03:11Z INFO  earendil] about to init daemon!
-[2023-11-29T20:03:11Z INFO  earendil::daemon] starting background task for main_daemon
-[2023-11-29T20:03:11Z INFO  earendil::daemon] daemon starting with fingerprint 4dewxch9f0y2zwja65qhwa62bppdn2zm
-[2023-11-29T20:03:11Z DEBUG earendil::daemon::gossip] skipping gossip due to no neighs
-[2023-11-29T20:03:11Z DEBUG earendil::daemon::inout_route] obfsudp out_route example-relay trying...
-[2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 packets queued up
-[2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 packets queued up
-[2023-11-29T20:03:16Z DEBUG earendil::daemon::gossip] skipping gossip due to no neighs
+[2023-11-29T20:03:11Z INFO  earendil] 准备初始化守护进程！
+[2023-11-29T20:03:11Z INFO  earendil::daemon] 为主守护进程启动后台任务
+[2023-11-29T20:03:11Z INFO  earendil::daemon] 守护进程启动，指纹为 4dewxch9f0y2zwja65qhwa62bppdn2zm
+[2023-11-29T20:03:11Z DEBUG earendil::daemon::gossip] 由于没有邻居，跳过 gossip
+[2023-11-29T20:03:11Z DEBUG earendil::daemon::inout_route] obfsudp 出口路线 example-relay 正在尝试...
+[2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 个数据包在排队
+[2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 个数据包在排队
+[2023-11-29T20:03:16Z DEBUG earendil::daemon::gossip] 由于没有邻居，跳过 gossip
 ```
+
+{% hint style="info" %}
+目前，`obfsudp`（一种混淆的 UDP 传输）是 Earendil 中唯一支持的传输协议。
+{% endhint %}
+
+{% hint style="warning" %}
+**安全获取中继信息**
+
+上面的配置使用 Mel 团队维护的**公开示例中继**。
+
+需要注意的是，在生产环境中，_Earendil 中继信息通常不会公开_。需要通过聊天、电子邮件或线下方式，亲自认识中继运营者才能获取联系信息。
+
+这是为了确保**抗封锁**：如果任何客户端都可以简单地请求中继信息，攻击者就可以加入网络获取中继列表，这可能让他们阻止或识别 Earendil 流量。（如果您熟悉抗 GFW 的「翻墙机场」，这个理由类似为什么翻墙节点的订阅地址必须保密）
+
+因此，如果您想确保抗封锁，不要使用我们上面给出的中继！您可以来到[我们的 Discord](https://discord.gg/jdVuk4Qj89) 寻求其他用户的帮助，打听他们运营的中继。
+{% endhint %}
 
 恭喜您！您已成功启动了一个 Earendil 客户端节点。
 
+### 运行中继节点
+
+1. 将此配置文件保存为名为 `config.yaml` 的文件：
+
+```yaml
+# Earendil 中继配置文件
+identity_file: /your/path/identity.secret # 替换为一个可写入的路径，用于存储身份秘钥
+# 中继设置
+in_routes:
+  main_udp: # 此入口路线的任意名称
+    protocol: obfsudp # 此入口路线使用的传输协议
+    listen: 0.0.0.0:19999 # 此入口路线监听的端口
+    secret: <your_random_seed> # obfsudp cookie 的随机种子。使用 "earendil generate-seed" 生成您自己的种子
+
+# 邻居，与客户端配置相同
+out_routes:
+  example-relay:
+    fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz
+    protocol: obfsudp
+    connect: 172.233.162.12:19999
+    cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
+```
+
+2. 使用此中继配置启动 `earendil` 守护进程：
+
+```
+earendil daemon --config relay-cfg.yaml
+```
+
+3. 在 `earendil` 守护进程运行时，使用控制命令 `my-routes` 获取您的中继节点联系信息，用于其他节点连接您的中继，和您成为相邻节点：
+
+```shell-session
+earendil control my-routes
+```
+
+输出应该像这样：
+
+```yaml
+main_udp:
+  connect: <YOUR_IP>:19999
+  cookie: 5ab28ed28be06cae621664a18c995a2b06c1f49ac426aa01541b45cbb81b7c38
+  fingerprint: kz9typ7nwvyx9w17v8r9nhrzvebmmszc
+  protocol: obfsudp
+```
+
+请将 `<YOUR_IP>` 替换为您服务器的公网 IP 地址。其他节点（客户端和中继都一样）只需将此块内容粘贴到他们的配置文件的 `out_routes` 部分，并，即可添加您的中继作为邻居。
+
+{% hint style="info" %}
+作为重放攻击防护的一部分，使用 `obfsudp` 的中继只有在运行至少 60 秒后才开始接受连接。要禁用此功能，请在启动 `earendil` 守护进程时将环境变量 `SOSISTAB2_NO_SLEEP` 设置为 `1`。您不应该为生产中继禁用此功能。
+{% endhint %}
+
+为了服务于互联网审查地区的用户，您应该避免公开发布您的中继联系信息。相反，应以一种方式分发它，以便合法用户而非审查者能够接触到——如果审查者了解到其 IP 地址，您的中继将被列入黑名单。
+
 ## 配置文件
 
-上面我们制作了一个配制文件，这里简单介绍一下配置文件的原理。
+以下是一些关于配置文件的实用信息。
 
-Earendil 有两种类型的节点：客户端和中继。从[网络架构部分](https://docs.earendil.network/wiki/architecture)可以了解到：
+### 中继节点与客户端？
 
-* **中继** 构成了 Earendil 网络的骨干，它们在相邻节点之间转发消息：直接连接到此中继的节点。
-* **客户端** 不转发任何流量，它们在中继的帮助下访问网络。它们的相邻节点不能是其他客户端。大部分用户运行的是客户端。
+中继配置和客户端配置的区别在于：中继配置有一个 `in-routes` 部分，指定了如何接受传入连接的位置和方式，而客户端配置则没有。因此，具有 `in-routes` 部分的配置文件是中继配置，没有的则是客户端配置。
 
-相应地，客户端和中继有不同的配置文件。区别在于：中继配置有一个 `in-routes` 部分，指定了如何接受传入连接的位置和方式，而客户端配置则没有。
+### 添加更多邻居
 
-### 客户端
-
-这是上面的示例客户端配置文件：
+这是上面示例中的客户端配置文件：
 
 ```yaml
 # 要连接的中继
@@ -111,7 +184,7 @@ out_routes:
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # 建立 obfsudp 连接的 cookie
 ```
 
-使用这个配置文件，我们的客户端只连接到一个中继。要添加第二个中继，我们在 `out_routes` 部分下放置另一个中继信息块：
+使用这个配置文件时，我们的客户端只连接到一个中继。如果要添加第二个中继，我们需要在 `out_routes` 部分下放置另一个中继信息块：
 
 ```yaml
 # 要连接的中继
@@ -128,29 +201,15 @@ out_routes:
     cookie: ...
 ```
 
-目前，`obfsudp`（一种混淆的 UDP 传输）是 Earendil 中唯一支持的传输协议。
 
-{% hint style="warning" %}
-**安全获取中继信息**
+### `identity_file`
 
-上面的配置使用 Mel 团队维护的**公开示例中继**。
-
-需要注意的是，在生产环境中，_Earendil 中继信息通常不会公开_。需要通过聊天、电子邮件或线下方式，亲自认识中继运营者才能获取联系信息。
-
-这是为了确保**抗封锁**：如果任何客户端都可以简单地请求中继信息，攻击者就可以加入网络获取中继列表，这可能让他们阻止或识别 Earendil 流量。（如果您熟悉抗 GFW 的「翻墙机场」，这个理由类似为什么翻墙节点的订阅地址必须保密）
-
-因此，如果您想确保抗封锁，不要使用我们上面给出的中继！您可以来到[我们的 Discord](https://discord.gg/jdVuk4Qj89) 寻求其他用户的帮助，打听他们运营的中继。
-{% endhint %}
-
-### 中继
-
-这是一个示例中继配置文件：
+这是上面示例中的中继配置文件：
 
 ```yaml
-# 随机的 *秘密* 种子，用于持久化 Earendil 身份
-# 使用 "earendil generate-seed" 生成您自己的种子
-identity_seed: <your_random_seed>
+# Earendil 中继配置文件
 # 中继设置
+identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
 in_routes:
   main_udp: # 这个 in-route 的随机名称
     protocol: obfsudp # 这个 in-route 使用的传输协议
@@ -166,10 +225,10 @@ out_routes:
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07
 ```
 
-`identity_seed` 是一个可选字符串，用于生成持久的 Earendil 身份。如果未指定此字段，每次 `earendil` 重启时都会生成一个随机身份。
+`identity_file` 是用于存储持久 Earendil 身份的可选文件路径。如果未指定此字段，每次 `earendil` 重新启动时都会生成一个随机身份。
 
-* **中继** 必须在其配置文件中指定 `identity_seed`，因为它们需要维护一个持久的身份以供客户端连接。
-* **客户端** 通常不指定 `identity_seed`，因为它们在 Earendil 网络上没有长期身份。
+* **中继** 必须在其配置文件中指定 `identity_file`，因为它们需要维护一个持久的身份以供客户端连接。
+* **客户端** 通常不指定 `identity_file`，因为它们在 Earendil 网络上没有长期身份。
 
 ## 单机多节点
 
@@ -220,37 +279,6 @@ earendil control --connect 127.0.0.1:11111 my-routes
 
 确保为每个额外的节点使用不同的端口！
 
-## 运行中继
-
-要运行中继节点，请使用您的中继配置启动 `earendil` 守护进程：
-
-```
-earendil daemon --config relay-cfg.yaml
-```
-
-要获取您的中继联系信息以供客户端使用，请确保 `earendil` 守护进程正在使用正确的配置文件运行，并使用控制命令 `my-routes`：
-
-```shell-session
-earendil control my-routes
-```
-
-输出应该如下所示：
-
-```yaml
-main_udp:
-  connect: <YOUR_IP>:19999
-  cookie: 5ab28ed28be06cae621664a18c995a2b06c1f49ac426aa01541b45cbb81b7c38
-  fingerprint: kz9typ7nwvyx9w17v8r9nhrzvebmmszc
-  protocol: obfsudp
-```
-
-客户端只需将此块粘贴到其配置文件的 `out_routes` 部分，将 `<YOUR_IP>` 替换为您服务器的公网 IP 地址，即可添加您的中继作为邻居。
-
-{% hint style="info" %}
-作为重放攻击防护的一部分，使用 `obfsudp` 的中继只有在运行至少 60 秒后才开始接受连接。要禁用此功能，请在启动 `earendil` 守护进程时将环境变量 `SOSISTAB2_NO_SLEEP` 设置为 `1`。您不应该为生产中继禁用此功能。
-{% endhint %}
-
-为了服务于互联网审查地区的用户，您应该避免公开发布您的中继联系信息。相反，应以一种方式分发它，以便合法用户而非审查者能够接触到——如果审查者了解到其 IP 地址，您的中继将被列入黑名单。
 
 ## 检查中继图
 

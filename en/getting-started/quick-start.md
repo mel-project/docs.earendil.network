@@ -136,7 +136,7 @@ out_routes:
 earendil daemon --config relay-cfg.yaml
 ```
 
-3. While the `earendil` daemon is running, obtain your relay's contact information for clients with the control command `my-routes`:
+3. While the `earendil` daemon is running, obtain your relay's contact information for other nodes to connect with you as a neighbor with the control command `my-routes`:
 
 ```shell-session
 earendil control my-routes
@@ -152,7 +152,7 @@ main_udp:
   protocol: obfsudp
 ```
 
-Clients simply paste this block, with `<YOUR_IP>` replaced by your server's public IP address, into the `out_routes` section of their config file to add your relay as a neighbor.
+Replace `<YOUR_IP>` with your server's public IP address. Other nodes (both clients and relays) can simply paste this block into the `out_routes` section of their config file to add your relay as a neighbor.
 
 {% hint style="info" %}
 As a part of replay attack protection, relays using `obfsudp` only start accepting connections after they have been running for at least 60 seconds. To disable this, set the environment variable`SOSISTAB2_NO_SLEEP` to `1` when you start the `earendil` daemon. You should _not_ disable this for production relays.
