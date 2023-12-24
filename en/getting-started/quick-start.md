@@ -56,7 +56,7 @@ Options:
 
 You can read more about Earendil's architecture in the wiki's [Network architecture section](https://docs.earendil.network/wiki/architecture).
 
-### Running a client node
+### Run a client node
 
 1. Save this config file into a file named `config.yaml`:
 
@@ -107,7 +107,7 @@ Thus, if you want to actually ensure ban-resistance, don't use the relay we gave
 
 Congratulations! You've successfully started an Earendil client node.
 
-### Running a relay node
+### Run a relay node
 
 1. Save this config file into a file named `config.yaml`:
 
