@@ -35,7 +35,7 @@ To host a web-proxy haven:
     ```yaml
     # havens we're hosting
     havens:
-      - identity_file: identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
+      - identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
         rendezvous: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # our chosen rendezvous relay
         handler:
           type: simple_proxy
