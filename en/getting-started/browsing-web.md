@@ -28,6 +28,20 @@ Now, set your browser to use localhost:23456 as a SOCKS5 proxy. Visit any websit
 
 As with other kinds of Earendil havens, both clients and relays can host web-proxy havens. Note, however, that doing so means exposing your IP address: there's simply no way to conceal your IP address, since a client can always connect to your proxy and go to an IP-checking website.
 
+{% hint style="danger" %}
+**No access control or filtering**
+
+Currently, there is no support for authenticating proxy users or filtering traffic through the web proxy you host. This means, among other things, that users of your proxy can:
+
+* Access local network resources, including on `localhost`&#x20;
+* Waste your bandwidth indiscriminately
+* Send email spam and get your IP address blocked by your ISP
+
+Thus, it's currently **not** recommended to set up public web proxies through Earendil unless you are sure of what you're doing.\
+\
+In the future, we will add support for user authentication and traffic filtering, which will make running a public `simple_proxy`  service much more viable.
+{% endhint %}
+
 To host a web-proxy haven:
 
 1.  Add this `havens` block to your earendil config file:
