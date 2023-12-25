@@ -66,7 +66,7 @@ server {
 
 ### Setting up the haven
 
-1. Add this `haven` block to your relay's config file, replacing `your_random_seed` with the output of step 2:
+1. Add this `haven` block to your relay's config file:
 
 ```yaml
 # havens we're hosting
@@ -83,7 +83,7 @@ havens:
 * `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For now, we’ll use the same test relay that we bootstrapped with throughout this tutorial: `ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz`.
 * `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port\_forwarding) to forward all haven traffic to the web server on port 8000.
 
-2. Restart the `earendil` daemon 
+2. Restart the `earendil` daemon
 3. Print out your haven's address with
 
 ```shell-session
