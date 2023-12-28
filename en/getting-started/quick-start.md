@@ -109,7 +109,7 @@ Congratulations! You've successfully started an Earendil client node.
 
 ### Run a relay node
 
-1. Save this config file into a file named `config.yaml`:
+1. Save this config file into a file named `relay-cfg.yaml`:
 
 ```yaml
 # Earendil relay config file

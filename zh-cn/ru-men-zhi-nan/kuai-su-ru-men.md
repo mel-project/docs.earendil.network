@@ -111,7 +111,7 @@ earendil daemon --config config.yaml
 
 ### 运行中继节点
 
-1. 将此配置文件保存为名为 `config.yaml` 的文件：
+1. 将此配置文件保存为名为 `relay-cfg.yaml` 的文件：
 
 ```yaml
 # Earendil 中继配置文件
