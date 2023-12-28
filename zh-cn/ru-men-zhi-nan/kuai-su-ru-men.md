@@ -6,7 +6,7 @@
 
 ## 系统要求
 
-* 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们西药从源代码编译。
+* 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们需要从源代码编译。
 * 客户端节点：
   * 至少 1 GB 的可用 RAM 和磁盘空间，用于编译程序
   * Windows 10、macOS 或 Linux
