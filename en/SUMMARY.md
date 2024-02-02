@@ -4,7 +4,10 @@
 
 ## getting started
 
-* [Quick start](getting-started/quick-start.md)
+* [Installation](getting-started/quick-start/README.md)
+  * [Command Line](getting-started/quick-start/command-line.md)
+  * [GUI](getting-started/quick-start/gui.md)
+* [Quick Start](getting-started/quick-start-1.md)
 * [Using and hosting havens](getting-started/using-havens.md)
 * [Browsing the Web](getting-started/browsing-web.md)
 

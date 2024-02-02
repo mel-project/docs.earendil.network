@@ -1,58 +1,13 @@
-# Quick start
+# Quick Start
 
-`earendil` is the reference implementation of Earendil, running as a background daemon similar to how `tor` runs as Tor's daemon.
-
-This tutorial will teach you how to install `earendil`, run both **client** and a **relay** nodes, as well as create a basic `earendil` config file. It will give you the background needed to learn about hosting [havens](using-havens.md) and [proxying normal Internet traffic](browsing-web.md).
-
-## System requirements
-
-* An up-to-date [Rust](https://www.rust-lang.org/tools/install) installation, with tools like `cargo` and `rustup` in your $PATH. Earendil currently has no official binary distribution, so we'll be compiling it from source.
-* For client nodes:
-  * At least 1 GB of free RAM and disk space, to compile the program
-  * Windows 10, macOS, or Linux
-* For relay nodes:
-  * A public IP address to serve clients. Generally, you'll find this on cloud servers, VPSes, dedicated servers, etc.
-  * At least 1 GB of free RAM and disk space.
-  * Only Linux is tested, though any platform that runs Rust is likely to work
-
-## Install
-
-In a terminal, install `earendil` by typing:
-
-```shell-session
-rustup update # to make sure your Rust is up to date
-```
-
-```shell-session
-cargo install --git https://github.com/mel-project/earendil.git earendil
-```
-
-Check that `earendil` is successfully installed by typing:
-
-```shell-session
-earendil
-```
-
-You should see:
-
-```shell-session
-Usage: earendil <COMMAND>
-
-Commands:
-  daemon         Runs an Earendil daemon
-  control        Runs a control-protocol verb
-  generate-seed
-  help           Print this message or the help of the given subcommand(s)
-
-Options:
-  -h, --help     Print help
-  -V, --version  Print version
-```
+{% hint style="info" %}
+If you're using a GUI to run your Earendil node, follow along by pasting and editing your configuration file in the "Settings" tab. Once you have a suitable configuration, you can start your node by clicking the "Start" button located at the bottom tray of the app.
+{% endhint %}
 
 ## Run a node
 
 * **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
-* **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.&#x20;
+* **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
 
 You can read more about Earendil's architecture in the wiki's [Network architecture section](https://docs.earendil.network/wiki/architecture).
 
@@ -70,7 +25,7 @@ out_routes:
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # cookie for making an obfsudp connection
 </code></pre>
 
-2. Run `earendil` with this config:&#x20;
+2. Run `earendil` with this config:
 
 ```bash
 earendil daemon --config config.yaml
@@ -276,8 +231,6 @@ earendil control --connect 127.0.0.1:11111 my-routes
 
 Be sure to use a different port for each additional node!
 
-
-
 ## Inspecting the relay graph
 
 Now that you're connected to the network, you can inspect the graph of Earendil relays from your node's perspective using:
@@ -314,7 +267,7 @@ digraph G {
 
 Paste the output into a [Graphviz renderer](https://dreampuf.github.io/GraphvizOnline/) to visualize the graph:
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 You are the blue node, your immediate neighbors are pink, and all the other relays are in white. Since only information about relays is gossiped to the entire network, no clients other than yourself (if you're a client node) can appear in this graph.
 

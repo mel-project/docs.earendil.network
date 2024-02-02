@@ -4,7 +4,7 @@ Unlike Tor, Earendil does not come with functionality for browsing the "normal" 
 
 But it's quite easy to host and use **web proxy havens** in Earendil. These are havens that you can host and share with other users, who can then use your haven as a web proxy to browse the normal Internet.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>Proxying Web traffic over Earendil</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>Proxying Web traffic over Earendil</p></figcaption></figure>
 
 This tutorial will teach you how.
 
