@@ -11,7 +11,6 @@
   * At least 1 GB of free RAM and disk space.
   * Only Linux is tested, though any platform that runs Rust is likely to work
 
-
 ## Command line
 
 In a terminal, install `earendil` by typing:
@@ -47,7 +46,8 @@ Options:
 ```
 
 ## GUI
-## Windows and Mac
+
+### Windows and Mac
 
 To install the Earendil GUI, first download the latest executable for your platform from our [releases page](https://github.com/mel-project/earendil/releases).
 
@@ -57,7 +57,7 @@ With the file decompressed, you're almost ready to run your program. Locate the 
 
 Please keep in mind that the binary you download must be compatible with your operating system. If the file doesn't run as expected, it's possible you downloaded the wrong version.
 
-## Linux
+### Linux
 
 You can use `cargo` to download, build, and launch the GUI:
 
