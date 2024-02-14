@@ -1,14 +1,11 @@
-# Command Line
+# Running a node
+- **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
+- **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
 
+You can read more about Earendil's architecture in the wiki's [Network architecture](../wiki/architecture.md) section.
 ### Run a client node
 
-{% hint style="info" %}
-If you're using a GUI to run your Earendil node, follow along by pasting and editing your configuration file in the "Settings" tab. Once you have a suitable configuration, you can start your node by clicking the "Start" button located at the bottom tray of the app.
-
-![](../../.gitbook/assets/image.png)
-{% endhint %}
-
-1. Save this config file into a file named `config.yaml`:
+1. Save this config file:
 
 <pre class="language-yaml"><code class="lang-yaml"><strong># Earendil client config file
 </strong># relays to connect to
@@ -20,11 +17,17 @@ out_routes:
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # cookie for making an obfsudp connection
 </code></pre>
 
-2. Run `earendil` with this config:
+- If you're using the **CLI** version: save it into a file named `config.yaml`
+- If you're using the **GUI**: paste it into the "Settings" tab
 
-```bash
-earendil daemon --config config.yaml
-```
+  ![](../../.gitbook/assets/image.png)
+
+2. Run `earendil` with this config:
+- **CLI**: 
+  ```bash
+  earendil daemon --config config.yaml
+  ```
+- **GUI**: clicking the "Start" button in the bottom tray of the app, toward the left side of the screen
 
 You should see logs output like this:
 
@@ -38,6 +41,12 @@ You should see logs output like this:
 [2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 packets queued up
 [2023-11-29T20:03:16Z DEBUG earendil::daemon::gossip] skipping gossip due to no neighs
 ```
+
+{% hint style="info" %}
+GUI: go to the "logs" tab in the top bar to see the logs!
+
+![](../../.gitbook/assets/gui-logs.png)
+{% endhint %}
 
 {% hint style="info" %}
 Currently, `obfsudp` (an obfuscated UDP transport) is the only supported transport protocol in Earendil.
@@ -59,6 +68,7 @@ Congratulations! You've successfully started an Earendil client node.
 
 ### Run a relay node
 
+We currently only support running relays using the CLI version.
 1. Save this config file into a file named `relay-cfg.yaml`:
 
 ```yaml
@@ -237,6 +247,13 @@ earendil control --connect 127.0.0.1:11111 my-routes
 Be sure to use a different port for each additional node!
 
 ## Inspecting the relay graph
+
+{% hint style="info" %}
+GUI: start your node, then go to the "Dashboard" tab to see the relay graph!
+
+![](../../.gitbook/assets/gui-graph-dump.png)
+{% endhint %}
+
 
 Now that you're connected to the network, you can inspect the graph of Earendil relays from your node's perspective using:
 
