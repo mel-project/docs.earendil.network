@@ -15,7 +15,7 @@ Please keep in mind that the binary you download must be compatible with your op
 You can use `cargo` to download, build, and launch the GUI:
 
 1. `$ git clone https://github.com/mel-project/earendil` to get the latest source code on the `master` branch
-2. Use `$ cd`` ``utilities/earendil-gui` to move into the `earendil-gui`directory
+2. Use `$ cd utilities/earendil-gui` to move into the `earendil-gui`directory
 3. Install it with `$ cargo install --path .`
 4. Finally, launch it with `$ earendil-gui` !
 
@@ -23,11 +23,11 @@ You can use `cargo` to download, build, and launch the GUI:
 
 After launching the GUI, you should see the default "Dashboard" tab:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Earendil GUI Dashboard</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Earendil GUI Dashboard</p></figcaption></figure>
 
 As you can see, there is currently no information available in our graph dump. This is because our node is disconnected. In order to start it up, let go over to the "Settings" tab.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Earendil GUI Settings with empty config</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 From here we can paste the example configuration from the [quick start instructions](../quick-start-1.md#config-file). If our config file is correct we will see "config successfully validated!" in green.
 

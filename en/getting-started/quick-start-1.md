@@ -3,7 +3,7 @@
 {% hint style="info" %}
 If you're using a GUI to run your Earendil node, follow along by pasting and editing your configuration file in the "Settings" tab. Once you have a suitable configuration, you can start your node by clicking the "Start" button located at the bottom tray of the app.
 
-![](<../.gitbook/assets/image (16).png>)
+![](../.gitbook/assets/image.png)
 {% endhint %}
 
 ## Run a node
