@@ -1,4 +1,4 @@
-# Running a node
+# Quick start
 - **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
 - **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
 

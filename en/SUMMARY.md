@@ -4,14 +4,11 @@
 
 ## getting started
 
-* [Installation](getting-started/quick-start/README.md)
-  * [Command Line](getting-started/quick-start/command-line.md)
-  * [GUI](getting-started/quick-start/gui.md)
-* [Quick Start](getting-started/quick-start-1/README.md)
-  * [Command Line](getting-started/quick-start-1/command-line.md)
-  * [GUI](getting-started/quick-start-1/gui.md)
+* [Installation](getting-started/installation.md)
+* [Quick Start](getting-started/quick-start.md)
 * [Using and hosting havens](getting-started/using-havens.md)
 * [Browsing the Web](getting-started/browsing-web.md)
+* [Chat](link-chat.md)
 
 ## 📖 wiki
 
