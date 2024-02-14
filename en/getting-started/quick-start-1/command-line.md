@@ -177,6 +177,16 @@ out_routes:
 * **Relays** must specify `identity_file` in their config files, as they need to maintain a persistent identity for clients to connect to.
 * **Clients** generally do not specify `identity_file`, since they have no long-term identity on the Earendil network.
 
+
+
+### `db_path`
+
+In order to persist your identity, debts, chat history, and relay graph when your node shuts down, you need to specify a `db_path` in your config file, with a path to the db file, like so:
+
+```yaml
+db_path: ~/.cache/earendil
+```
+
 ## 1+ nodes on 1 machine
 
 You can interact with a running `earendil` daemon with `earendil control` commands. Check the list of `control` commands with:
