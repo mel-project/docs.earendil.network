@@ -1,4 +1,9 @@
 # Quick start
+
+`earendil` is the reference implementation of Earendil, running as a background daemon similar to how `tor` runs as Tor's daemon.
+
+This tutorial will teach you how to run both **client** and a **relay** Earendil nodes, as well as create a basic `earendil` config file. It will give you the background needed to learn about hosting [havens](../using-havens.md) and [proxying normal Internet traffic](../browsing-web.md).
+
 - **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
 - **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
 
