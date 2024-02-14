@@ -1,19 +1,12 @@
-# Quick Start
+# Command Line
+
+### Run a client node
 
 {% hint style="info" %}
 If you're using a GUI to run your Earendil node, follow along by pasting and editing your configuration file in the "Settings" tab. Once you have a suitable configuration, you can start your node by clicking the "Start" button located at the bottom tray of the app.
 
-![](../.gitbook/assets/image.png)
+![](../../.gitbook/assets/image.png)
 {% endhint %}
-
-## Run a node
-
-* **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
-* **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
-
-You can read more about Earendil's architecture in the wiki's [Network architecture section](https://docs.earendil.network/wiki/architecture).
-
-### Run a client node
 
 1. Save this config file into a file named `config.yaml`:
 
@@ -269,7 +262,7 @@ digraph G {
 
 Paste the output into a [Graphviz renderer](https://dreampuf.github.io/GraphvizOnline/) to visualize the graph:
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 You are the blue node, your immediate neighbors are pink, and all the other relays are in white. Since only information about relays is gossiped to the entire network, no clients other than yourself (if you're a client node) can appear in this graph.
 
@@ -294,5 +287,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-* Visting and hosting Earendil [**havens**](using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](browsing-web.md).
+* Visting and hosting Earendil [**havens**](../using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](../browsing-web.md).
