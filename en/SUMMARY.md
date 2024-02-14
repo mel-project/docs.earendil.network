@@ -8,7 +8,7 @@
 * [Quick Start](getting-started/quick-start.md)
 * [Using and hosting havens](getting-started/using-havens.md)
 * [Browsing the Web](getting-started/browsing-web.md)
-* [Chat](link-chat.md)
+* [Chat](getting-started/link-chat.md)
 
 ## 📖 wiki
 
