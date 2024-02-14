@@ -28,11 +28,11 @@ out_routes:
   ![](../.gitbook/assets/image.png)
 
 2. Run `earendil` with this config:
-- **CLI**: 
-  ```bash
-  earendil daemon --config config.yaml
-  ```
-- **GUI**: clicking the "Start" button in the bottom tray of the app, toward the left side of the screen
+  - **CLI**: 
+    ```bash
+    earendil daemon --config config.yaml
+    ```
+  - **GUI**: clicking the "Start" button in the bottom tray of the app, toward the left side of the screen
 
 You should see logs output like this:
 
