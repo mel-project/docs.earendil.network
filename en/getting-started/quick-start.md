@@ -2,7 +2,7 @@
 
 `earendil` is the reference implementation of Earendil, running as a background daemon similar to how `tor` runs as Tor's daemon.
 
-This tutorial will teach you how to run both **client** and a **relay** Earendil nodes, as well as create a basic `earendil` config file. It will give you the background needed to learn about hosting [havens](../using-havens.md) and [proxying normal Internet traffic](../browsing-web.md).
+This tutorial will teach you how to run both **client** and a **relay** Earendil nodes, as well as create a basic `earendil` config file. It will give you the background needed to learn about hosting [havens](./using-havens.md) and [proxying normal Internet traffic](./browsing-web.md).
 
 - **Relays** form the backbone of the Earendil network. They serve other nodes on the network by relaying messages for them.
 - **Clients** do not relay any traffic, and they access the network with the help of relays. They cannot be neighbors with other clients.
@@ -25,7 +25,7 @@ out_routes:
 - If you're using the **CLI** version: save it into a file named `config.yaml`
 - If you're using the **GUI**: paste it into the "Settings" tab
 
-  ![](../../.gitbook/assets/image.png)
+  ![](../.gitbook/assets/image.png)
 
 2. Run `earendil` with this config:
 - **CLI**: 
@@ -50,7 +50,7 @@ You should see logs output like this:
 {% hint style="info" %}
 GUI: go to the "logs" tab in the top bar to see the logs!
 
-![](../../.gitbook/assets/gui-logs.png)
+![](../.gitbook/assets/gui-logs.png)
 {% endhint %}
 
 {% hint style="info" %}
@@ -256,7 +256,7 @@ Be sure to use a different port for each additional node!
 {% hint style="info" %}
 GUI: start your node, then go to the "Dashboard" tab to see the relay graph!
 
-![](../../.gitbook/assets/gui-graph-dump.png)
+![](../.gitbook/assets/gui-graph-dump.png)
 {% endhint %}
 
 
@@ -294,7 +294,7 @@ digraph G {
 
 Paste the output into a [Graphviz renderer](https://dreampuf.github.io/GraphvizOnline/) to visualize the graph:
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 You are the blue node, your immediate neighbors are pink, and all the other relays are in white. Since only information about relays is gossiped to the entire network, no clients other than yourself (if you're a client node) can appear in this graph.
 
@@ -319,5 +319,5 @@ Learning about other nodes on the network takes time, so your node will not know
 
 Now you know how to run basic client and relay nodes, plus how to inspect the relay graph! The next two tutorials will teach you the two most fundamental features of Earendil:
 
-* Visting and hosting Earendil [**havens**](../using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
-* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](../browsing-web.md).
+* Visting and hosting Earendil [**havens**](./using-havens.md): Internet services (like websites) hosted anonymously on the Earendil network
+* Using the Internet anonymously by proxying it through an Earendil-based [**web-proxy**](./browsing-web.md).
