@@ -4,52 +4,6 @@
 
 本教程将教您如何安装 `earendil`，运行**客户端**和**中继**节点，以及创建一个最基本的 `earendil` 配置文件。这样，我们就有基础下一步学习托管[避风港](bi-feng-gang-havens.md)和[代理普通互联网流量](jian-yi-wang-ye-dai-li.md)。
 
-## 系统要求
-
-* 最新版的 [Rust](https://www.rust-lang.org/tools/install) ，包括 `cargo` 和 `rustup` 等工具。Earendil 目前没有官方的二进制发行版，所以我们需要从源代码编译。
-* 客户端节点：
-  * 至少 1 GB 的可用 RAM 和磁盘空间，用于编译程序
-  * Windows 10、macOS 或 Linux
-* 中继节点：
-  * 一个公网 IP 地址，用于服务客户端。云服务器、VPS、专用服务器等基本都有。
-  * 至少 1 GB 的可用 RAM 和磁盘空间。
-  * 只有 Linux 经过测试可用，但任何运行 Rust 的平台都很有可能可以使用
-
-## 安装
-
-首先，请确保您已安装最新版本的 [Rust](https://www.rust-lang.org/tools/install) 并将其添加到您的 $PATH 环境变量中。
-
-在终端中，输入以下命令来安装 `earendil`：
-
-```shell-session
-rustup update # 确保 Rust 是最新版本
-```
-
-```shell-session
-cargo install --git https://github.com/mel-project/earendil.git earendil
-```
-
-检查 `earendil` 是否安装成功：
-
-```shell-session
-earendil
-```
-
-您应该看到以下输出：
-
-```shell-session
-Usage: earendil <COMMAND>
-
-Commands:
-  daemon         Runs an Earendil daemon
-  control        Runs a control-protocol verb
-  generate-seed
-  help           Print this message or the help of the given subcommand(s)
-
-Options:
-  -h, --help     Print help
-  -V, --version  Print version
-```
 
 ## 运行节点
 
