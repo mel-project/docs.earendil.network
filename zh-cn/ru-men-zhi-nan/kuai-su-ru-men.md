@@ -26,7 +26,7 @@ out_routes:
 </code></pre>
 
 - 如果您使用的是 **命令行界面（CLI）** ：将其保存为名为 `config.yaml` 的文件
-- 如果您使用的是 **图形界面（GUI）**：将其粘贴到“设置”标签中
+- 如果您使用的是 **图形界面（GUI）**：将其粘贴到 “Settings” 标签中
 
   ![](../../en/.gitbook/assets/image.png)
 
@@ -35,7 +35,7 @@ out_routes:
      ```bash
      earendil daemon --config config.yaml
      ```
-   - **图形界面（GUI）**：点击应用底部托盘中的 "Start" 按钮，位于屏幕左侧
+   - **图形界面（GUI）**：点击应用底部托盘中的 "Start" 按钮，位于屏幕左下方
 
 您应该看到如下日志输出：
 
