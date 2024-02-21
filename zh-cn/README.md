@@ -6,7 +6,7 @@
 
 [**Earendil**](https://earendil.network) 是一个去中心化的、抗审查的、奖励兼容的通信和价值传输网络。即使面对强大的国家级攻击者，Earendil 网络的任意两个用户仍然可以自由地通讯和交易，
 
-<figure><img src="../en/.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../en/.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 更简单地说，Earendil 是一个**魔法互联网虫洞**：字节和金钱从一端输入，从另一端输出，没有人能叫停。
 
