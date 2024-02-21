@@ -5,18 +5,17 @@
 本教程将教您如何安装 `earendil`，运行**客户端**和**中继**节点，以及创建一个最基本的 `earendil` 配置文件。这样，我们就有基础下一步学习托管[避风港](bi-feng-gang-havens.md)和[代理普通互联网流量](jian-yi-wang-ye-dai-li.md)。
 
 
-## 运行节点
-
 * **中继** 构成了 Earendil 网络的骨干。它们为网络上的其他节点提供传递消息的服务。
 * **客户端** 不转发任何流量，它们只能在中继的帮助下访问网络。它们的相邻节点不能是其他客户端。
 
 您可以在 wiki 的[网络架构部分](https://docs.earendil.network/wiki/architecture)更深入了解 Earendil 的架构。
 
 ### 运行客户端节点
-1. 将此配置文件保存为名为 `config.yaml` 的文件：
+1. 保存此配置文件：
 
-```yaml
-# Earendil 客户端配置文件
+<pre class="language-yaml"><code class="lang-yaml"><strong># Earendil 客户端配置文件
+</strong>
+db_path: ./.cache/earendil # 存储持久信息的位置
 # 要连接的中继
 out_routes:
   example-relay: # 此中继的任意名称
@@ -24,13 +23,19 @@ out_routes:
     protocol: obfsudp # 用于连接中继的传输协议
     connect: 172.233.162.12:19999 # 中继监听的 IP 和端口
     cookie: fa31361fe5597e14e22592cb98ef0f2eab5c62b3f38472331a2b6c9073991e07 # 用于建立 obfsudp 连接的 cookie
-```
+</code></pre>
+
+- 如果您使用的是 **命令行界面（CLI）** ：将其保存为名为 `config.yaml` 的文件
+- 如果您使用的是 **图形界面（GUI）**：将其粘贴到“设置”标签中
+
+  ![](../../en/.gitbook/assets/image.png)
 
 2. 使用此配置运行 `earendil`:
-
-```bash
-earendil daemon --config config.yaml
-```
+   - **命令行界面（CLI）**：
+     ```bash
+     earendil daemon --config config.yaml
+     ```
+   - **图形界面（GUI）**：点击应用底部托盘中的 "Start" 按钮，位于屏幕左侧
 
 您应该看到如下日志输出：
 
@@ -44,6 +49,12 @@ earendil daemon --config config.yaml
 [2023-11-29T20:03:11Z DEBUG earendil::socket::n2r_socket] 0 个数据包在排队
 [2023-11-29T20:03:16Z DEBUG earendil::daemon::gossip] 由于没有邻居，跳过 gossip
 ```
+
+{% hint style="info" %}
+图形界面（GUI）：前往顶栏中的 "日志" 标签查看日志！
+
+![](../../en/.gitbook/assets/gui-logs.png)
+{% endhint %}
 
 {% hint style="info" %}
 目前，`obfsudp`（一种混淆的 UDP 传输）是 Earendil 中唯一支持的传输协议。
@@ -64,11 +75,12 @@ earendil daemon --config config.yaml
 恭喜您！您已成功启动了一个 Earendil 客户端节点。
 
 ### 运行中继节点
-
+目前我们只支持使用命令行界面（CLI）运行中继。
 1. 将此配置文件保存为名为 `relay-cfg.yaml` 的文件：
 
 ```yaml
 # Earendil 中继配置文件
+db_path: ./.cache/earendil # 存储持久信息的位置
 identity_file: /your/path/identity.secret # 替换为一个可写入的路径，用于存储身份秘钥
 # 中继设置
 in_routes:
@@ -129,6 +141,7 @@ main_udp:
 这是上面示例中的客户端配置文件：
 
 ```yaml
+db_path: ./.cache/earendil # 存储持久信息的位置
 # 要连接的中继
 out_routes:
   example-relay: # 这个中继的任意名称
@@ -141,6 +154,7 @@ out_routes:
 使用这个配置文件时，我们的客户端只连接到一个中继。如果要添加第二个中继，我们需要在 `out_routes` 部分下放置另一个中继信息块：
 
 ```yaml
+db_path: ./.cache/earendil # 存储持久信息的位置
 # 要连接的中继
 out_routes:
   example-relay:
@@ -162,6 +176,7 @@ out_routes:
 
 ```yaml
 # Earendil 中继配置文件
+db_path: ./.cache/earendil # 存储持久信息的位置
 # 中继设置
 identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
 in_routes:
@@ -235,6 +250,12 @@ earendil control --connect 127.0.0.1:11111 my-routes
 
 
 ## 检查中继图
+
+{% hint style="info" %}
+图形界面（GUI）：启动您的节点，然后前往"Dashboard"标签查看中继图！
+
+![](../../en/.gitbook/assets/gui-graph-dump.png)
+{% endhint %}
 
 现在您已经连接到网络，您可以使用以下命令从您节点的视角检查 Earendil 中继图：
 

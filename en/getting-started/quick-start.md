@@ -13,7 +13,9 @@ You can read more about Earendil's architecture in the wiki's [Network architect
 1. Save this config file:
 
 <pre class="language-yaml"><code class="lang-yaml"><strong># Earendil client config file
-</strong># relays to connect to
+</strong>
+db_path: ./.cache/earendil # where to store persistent information
+# relays to connect to
 out_routes:
   example-relay: # arbitrary name for this relay
     fingerprint: ejqgx2g5jwe2mvjnzqbb6w1htmj9d2mz # relay's long-term identity fingerprint
@@ -78,6 +80,7 @@ We currently only support running relays using the CLI version.
 
 ```yaml
 # Earendil relay config file
+db_path: ./.cache/earendil # where to store persistent information
 identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
 # relay settings
 in_routes:
@@ -138,6 +141,7 @@ The defining difference between relay configs and client configs is: relay confi
 Here is the example client config file from above:
 
 ```yaml
+db_path: ./.cache/earendil # where to store persistent information
 # relays to connect to
 out_routes:
   example-relay: # arbitrary name for this relay
@@ -150,6 +154,7 @@ out_routes:
 With a config file like this, our node only connects to one neighbor (which for clients, has to be a relay). To add a second neighbor, we put another relay information block under the `out_routes` section:
 
 ```yaml
+db_path: ./.cache/earendil # where to store persistent information
 # relays to connect to
 out_routes:
   example-relay:
@@ -170,6 +175,8 @@ Here's the example relay config file from above:
 
 ```yaml
 # Earendil relay config file
+
+db_path: ./.cache/earendil # where to store persistent information
 identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
 # relay settings
 in_routes:
@@ -191,16 +198,6 @@ out_routes:
 
 * **Relays** must specify `identity_file` in their config files, as they need to maintain a persistent identity for clients to connect to.
 * **Clients** generally do not specify `identity_file`, since they have no long-term identity on the Earendil network.
-
-
-
-### `db_path`
-
-In order to persist your identity, debts, chat history, and relay graph when your node shuts down, you need to specify a `db_path` in your config file, with a path to the db file, like so:
-
-```yaml
-db_path: ~/.cache/earendil
-```
 
 ## 1+ nodes on 1 machine
 

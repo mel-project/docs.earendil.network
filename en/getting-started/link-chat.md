@@ -36,6 +36,6 @@ $ earendil control chat list
 ```
 
 ## GUI
-`link-chat` is located in the "Chat" tab of the earendil GUI. You can chat with any of your direct neighbors by selecting their fingerprint in the menu on the left side of the screen:
+`link-chat` is located in the "Chat" tab of the Earendil GUI. You can chat with any of your direct neighbors by selecting their fingerprint in the menu on the left side of the screen:
 
 ![](../.gitbook/assets/gui-chat.png)
