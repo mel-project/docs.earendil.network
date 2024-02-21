@@ -35,7 +35,7 @@ out_routes:
      ```bash
      earendil daemon --config config.yaml
      ```
-   - **图形界面（GUI）**：点击应用底部托盘中的 "Start" 按钮，位于屏幕左下方
+   - **图形界面（GUI）**：点击应用底部托盘中的 "Start" 按钮，位于屏幕左下方g
 
 您应该看到如下日志输出：
 
@@ -252,7 +252,7 @@ earendil control --connect 127.0.0.1:11111 my-routes
 ## 检查中继图
 
 {% hint style="info" %}
-图形界面（GUI）：启动您的节点，然后前往"Dashboard"标签查看中继图！
+图形界面（GUI）：启动您的节点，然后前往 “Dashboard” 标签查看中继图！
 
 ![](../../en/.gitbook/assets/gui-graph-dump.png)
 {% endhint %}
