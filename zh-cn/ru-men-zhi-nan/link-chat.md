@@ -1,9 +1,7 @@
-# `link-chat`
-
 Earendil 的 `link-chat` 是一个极简的聊天工具，用于与 Earendil 网络中的直接邻居交流。您可以使用它与邻居协商价格和讨论您的债务。
 
 ## 命令行界面（CLI）
-在命令行中使用 `link-chat`，在终端中输入：
+在终端中，输入以下命令来使用 `link-chat`：
 
 ```bash
 earendil control [--connect 127.0.0.1:control_listen_port] chat <COMMAND>
@@ -38,4 +36,4 @@ $ earendil control chat list
 ## 图形界面（GUI）
 `link-chat` 位于 Earendil GUI 的 "Chat" 标签中。您可以通过在屏幕左侧的菜单选择任何邻居的指纹，与其聊天：
 
-![](../.gitbook/assets/gui-chat.png)
+![](../../en/.gitbook/assets/gui-chat.png)
