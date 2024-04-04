@@ -1,6 +1,6 @@
 # Using and hosting havens
 
-**Havens** are anonymously hosted services, similar to [onion services in Tor](https://community.torproject.org/onion-services/). By hosting a haven, you can serve a TCP or UDP service, like a website, IRC server, or similar. Both you and your users will then be protected by Earendil's anonymity guarantees.
+**Havens** are anonymously hosted services, similar to [onion services in Tor](https://community.torproject.org/onion-services/). By hosting a haven, you can serve a TCP service, like a website, IRC server, or similar. Both you and your users will then be protected by Earendil's anonymity guarantees.
 
 This tutorial will teach you how to use and host basic Earendil havens.
 
