@@ -5,10 +5,13 @@
 ## getting started
 
 * [Installation](getting-started/installation.md)
-* [Quick Start](getting-started/quick-start.md)
-* [Using and hosting havens](getting-started/using-havens.md)
-* [Browsing the Web](getting-started/browsing-web.md)
+* [Quick start](getting-started/quick-start.md)
+* [Host a web proxy](getting-started/host-proxy.md)
+* [Visit and host havens](getting-started/using-havens.md)
 * [Chat](getting-started/link-chat.md)
+* [Run a relay](getting-started/run-relay.md)
+* [Config file](getting-started/config.md)
+
 
 ## 📖 wiki
 
