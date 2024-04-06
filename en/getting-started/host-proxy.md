@@ -31,10 +31,10 @@ out_routes: # relays to connect to
 
 havens: # havens we're hosting
     - identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
-    rendezvous: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # relay chosen as our rendezvous point for onion-routing
-    handler:
+      listen_port: 19999 # port where proxy server listens
+      rendezvous: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # relay chosen as our rendezvous point for onion-routing
+      handler:
         type: simple_proxy # Earendil's web proxy protocol
-        listen_dock: 19999 # dock where proxy server listens
 ```
 
 Hosting a web proxy necessarily exposes your IP address: a client can always connect to your proxy and go to an IP-checking website. 
