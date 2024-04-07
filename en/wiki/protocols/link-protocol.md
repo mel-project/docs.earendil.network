@@ -4,9 +4,9 @@ The link protocol controls every node-node link in the Earendil network, both re
 
 The basic outline is such:
 
-* Every link is a `sosistab2` session, backed by one or more pipes (such as `obfsudp` pipes)
-* Each end of a link can call "LinkRPC" methods on the other end, by using JSON-RPC over `sosistab2` streams. These streams have label `"n2n_control"`
-* Onion-routed messages are passed through `sosistab2` unreliable messages. These messages are passed using streams with label `"onion_packets"`.
+- Every link is a `picomux` session
+- Each end of a link can call "LinkRPC" methods on the other end, by using JSON-RPC over `picomux` streams. These streams have label `"!rpc"`
+- Onion-routed messages are passed through a stream with label `""`.
 
 ## LinkRPC
 
@@ -19,9 +19,9 @@ Each end of a link separately establishes one or more `sosistab2` streams labell
 
 LinkRPC methods are used for actions such as:
 
-* Checking the liveness and performance of a link by "pinging" it
-* Gossipping the relay graph
-* Negotiating prices and keeping track of debt
+- Checking the liveness and performance of a link by "pinging" it
+- Gossipping the relay graph
+- Negotiating prices and keeping track of debt
 
 We now discuss some of these functions in more detail.
 
