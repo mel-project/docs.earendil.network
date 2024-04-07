@@ -1,23 +1,14 @@
 # Run a relay
 
-We currently only support running relays using the CLI version.
+We currently only support running relays using the CLI version. Relays should be run on machines with public IP addresses.
 
-Relays and clients nodes use the same `earendil` executable. The defining difference betweenthem is in their config file: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not. 
+Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not. 
 
-To run a relay, save this config file into a file named `relay-cfg.yaml`:
+To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sure to replace "/your/path/` with an appropriate path:
 
 ```yaml
 # Earendil relay config file
-db_path: ./.cache/earendil # where to store persistent information
-
-# relay settings
-identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
-
-in_routes:
-  main_udp:
-    obfs: 
-      sosistab3: <your_random_seed> # random seed for obfsudp cookie. Generate your own with "earendil generate-seed"
-    listen: 0.0.0.0:19999 # port where this in-route listens
+state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
 
 # neighbors, same as in the client config
 out_routes:
@@ -27,6 +18,14 @@ out_routes:
     obfs:
       sosistab3: "randomly-generated-cookie-lala-doodoo" 
 
+# relay settings
+identity_file: /your/path/identity.secret # replace with a writable path for storing identity secret
+
+in_routes:
+  main_udp:
+    obfs: 
+      sosistab3: <your_random_seed> # random seed for obfsudp cookie. Generate your own with `earendil generate-seed`
+    listen: 0.0.0.0:19999 # port where this in-route listens
 ```
 
 Start the `earendil` daemon using this relay config:

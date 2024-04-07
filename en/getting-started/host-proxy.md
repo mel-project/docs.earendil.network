@@ -18,10 +18,9 @@ Thus, it's currently **not** recommended to set up public web proxies through Ea
 In the future, we will add support for user authentication and traffic filtering, which will make running a public `simple_proxy`  service much more viable.
 {% endhint %}
 
-To host a web proxy, paste this config file into the "Settings" tab of your Earendil GUI:
+To host a web proxy, paste this config file into the "Settings" tab of your Earendil GUI. Be sure to replace "/your/path/` with an appropriate path:
 ```yaml
-db_path: ./.cache/earendil # where to store persistent information
-Since web-proxy havens cannot have any anonymity, it's not important which rendezvous relay you choose. We recommend choosing yourself (if you're a relay) or an immediate neighbor (if you're a client) as the rendezvous point for optimal performance. In this example, we continue to use the public relay we use in all the tutorials.
+state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
 out_routes: # relays to connect to
   example-relay: # arbitrary name for this relay
     connect: 45.33.109.28:12345 # IP and port where the relay is listening
@@ -37,13 +36,13 @@ havens: # havens we're hosting
         type: simple_proxy # Earendil's web proxy protocol
 ```
 
-Hosting a web proxy necessarily exposes your IP address: a client can always connect to your proxy and go to an IP-checking website. 
+Note that hosting a web proxy necessarily exposes your IP address: a client can always connect to your proxy and go to an IP-checking website. 
 
 Since web-proxies cannot have any anonymity, it's not important which rendezvous relay you choose (`rendezvous` field). We recommend choosing yourself (if you're a relay) or an immediate neighbor (if you're a client) as the rendezvous point for optimal performance. In this example, we continue to use the public relay we use in all the tutorials.
 
 Start Earendil, and you can find your new web proxy's information in the "Dashboard" tab:
 
-[insert picture]
+![](../.gitbook/assets/gui-proxy-haven.png)
 
 Now any Earendil node with this information can use the web proxy you just set up to browse the internet anonymously, by including this block in their Earendil config file:
 
@@ -52,5 +51,5 @@ socks5:
   listen: 127.0.0.1:23456
   fallback:
     simple_proxy: 
-      remote: TODO:19999
+      remote: <your-haven-fingerprint>:19999
 ```

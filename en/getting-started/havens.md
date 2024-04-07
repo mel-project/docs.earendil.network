@@ -6,11 +6,10 @@ This tutorial will teach you how to use and host basic Earendil havens.
 
 ## Visit havens
 
-You can access HTTP-based havens right in your browser. Paste the following config file into the "Settings" tab of your Earendil GUI:
+You can access HTTP-based havens right in your browser. Paste the following config file into the "Settings" tab of your Earendil GUI. Be sure to replace "/your/path/` with an appropriate path:
 
 ```yaml
-db_path: ./.cache/earendil # where to store persistent information
-
+state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
 out_routes: # relays to connect to
   example-relay: # arbitrary name for this relay
     connect: 45.33.109.28:12345 # IP and port where the relay is listening
@@ -30,7 +29,7 @@ Then, set your browser to use `localhost:23456` as a SOCKS5 proxy. For Firefox t
 Try visiting
 
   ```!
-  http://qcmnt2mbchhanm7fzacybswzknbsw3zp.haven:12345
+  http://t90bt94h01ezd75zv9rtzam60thnbkvz.haven:12345
   ```
 
 like you would any ordinary website. You should be greeted with:
@@ -71,10 +70,10 @@ server {
 
 ### Set up the haven
 
-Paste this config file into your Earendil GUI's "Settings" tab:
+Paste this config file into your Earendil GUI's "Settings" tab. Be sure to replace "/your/path/` with an appropriate path:
 
 ```yaml
-db_path: ./.cache/earendil # where to store persistent information
+state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
 
 out_routes: # relays to connect to
   example-relay: # arbitrary name for this relay
@@ -86,10 +85,10 @@ out_routes: # relays to connect to
 # havens we're hosting
 havens:
   - identity_file: /your/path/identity.secret # replace with a writable path for storing this haven's identity secret
+    listen_port: 12345
     rendezvous: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # relay chosen as our rendezvous point for onion-routing
     handler:
       type: tcp_service
-      listen_dock: 12345
       upstream: 127.0.0.1:8000 # where web server is listening
 ```
 
@@ -98,6 +97,8 @@ havens:
 * `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port\_forwarding) to forward all haven traffic to the web server on port 8000.
 
 Start Earendil, and find your haven's address in the "Dashboard" tab:
+
+![](../.gitbook/assets/gui-tcp-haven.png)
 
 {% hint style="info" %}
 In the CLI version, you can get your haven's address with

@@ -11,9 +11,9 @@ All of `earendil`'s configuration options are specified in a `yaml` config file,
 
   ![](../.gitbook/assets/image.png)
 
-Paste this config file into your settings tab:
+Paste this config file into your Settings tab. Be sure to replace "/your/path/` with an appropriate path:
 ```yaml
-db_path: ./.cache/earendil # where to store persistent information
+state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
 
 out_routes: # relays to connect to
   example-relay: # arbitrary name for this relay
@@ -42,7 +42,7 @@ To browse the web through Earendil, we need to configure a web browser to use ou
 
 ![image](https://hackmd.io/\_uploads/SkLZ828Sp.png)
   
-Visit any website as you normally would, except now all your traffic is going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `45.33.109.28`. That's the IP address of this tutorial's bootstrap Earendil node.
+Visit any website as you normally would, except now all your traffic is going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `45.33.109.28`. That's the IP address of this tutorial's bootstrap node.
 
 Now you can use Earendil as a web proxy to browse the internet anonymously! Feel free to share [speed tests](https://speed.cloudflare.com/) in our [Discord](https://discord.gg/AVsGbhzTzx). 
 
