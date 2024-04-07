@@ -10,7 +10,7 @@ If you haven't already, **install the GUI** from the [Installation](./installati
 
 All of `earendil`'s configuration options are specified in a YAML config file, located in the "Settings" tab of the GUI.
 
-![](../.gitbook/assets/image.png)
+![](../.gitbook/assets/gui-settings.png)
 
 Paste this config file into your Settings tab. Be sure to replace "/your/path/` with an appropriate path:
 
