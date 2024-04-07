@@ -1,6 +1,6 @@
-# `link-chat`
+# Chat
 
-Earendil's `link-chat` is a minimal chat tool for talking to your immediate neighbors in the Earendil network. You can use it to negotiate connection prices with your neighbors.
+Earendil has a minimal embedded chat tool for talking to your **immediate neighbors** in the Earendil network. You can use it to negotiate connection prices with your neighbors.
 
 ## GUI
 `link-chat` is located in the "Chat" tab of the Earendil GUI. You can chat with any of your direct neighbors by selecting their fingerprint in the menu on the left side of the screen:
