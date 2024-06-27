@@ -3,10 +3,16 @@
 Here's a fully annotated config file:
 
 ```yaml
-# [optional] path to database; must be a path writable by the `earendil` daemon. If this key is not specified, then `earendil` uses a default path. This means that if you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs in order to prevent the additional daemons from trying to use the same database and crashing.
+# [optional] Path to the database; must be writable by the `earendil` daemon.
+# If this key is not specified, `earendil` uses a default path.
+# If you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs.
+# This prevents additional daemons from trying to use the same database and crashing.
 db_path: ./.cache/earendil
 
-# [optional] IP address where the daemon listens for control commands. If this key is not specified, then `earendil` listens for control commands on a default port. This means that if you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs in order to prevent the additional daemons from trying to listen on the same port and crashing.
+# [optional] IP address where the daemon listens for control commands.
+# If this key is not specified, `earendil` listens for control commands on a default port.
+# If you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs.
+# This prevents additional daemons from trying to listen on the same port and crashing.
 # Currently sending control commands to remote daemons is not supported, so this should be `127.0.0.1:<free port>`.
 control_listen: 127.0.0.1:11111
 
@@ -26,14 +32,14 @@ out_routes:
       sosistab3: shove-mistake-wish-endless-antique-citizen-filter-employ-cigar-clip-acid-defense
     # price and debt config for this link
     price_config:
-      # how much you charge per incoming packet, in nanoMELs
+      # how much you charge per incoming packet, in µMELs
       inbound_price: 0
-      # debt limit for inbound packets, in nanoMELs
+      # debt limit for inbound packets, in µMELs
       inbound_debt_limit: 0
-      # max price you're willing to pay per outgoing packet, in nanoMELs
+      # max price you're willing to pay per outgoing packet, in µMELs
       outbound_max_price: 10
-      # min debt limit you accept for outbound packets, in nanoMELs
-      # Negative debt limit = requires prepayment
+      # min debt limit you accept for outbound packets, in µMELs
+      # Negative debt limit means prepayment is required
       outbound_min_debt_limit: -100
   # more relays to connect to
   relay-2:
@@ -48,13 +54,18 @@ payment_methods:
     # secret of melwallet to use for sending + receiving payments
     secret: <your-mel-wallet-secret>
   # no arguments required to support PoW payments
-  pow
+  # trailing colon necessary!
+  pow:
 # [optional] how to connect to the Mel blockchain, can be Earendil haven address
 # If this key is not specified, then we connect to the Mel blockchain using the default bootstrap node over clearnet. This may not work in countries with internet censorship.
 mel_bootstrap: <address-to-melnode>
 
-# -------------------------------- havens + proxy --------------------------------
-# [optional] starts a local Socks5 server that proxies traffic through Earendil. This gives you access to Earendil havens. If this key is not specified, then `earendil` starts a Socks5 proxy on **port 30003** with `fallback: pass_through`. This means that if you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs in order to prevent the additional daemons from trying to listen on the same port and crashing.
+# --------------------------- havens + proxy ---------------------------
+# [optional] Starts a local Socks5 server that proxies traffic through Earendil.
+# This gives you access to Earendil havens.
+# If this key is not specified, `earendil` starts a Socks5 proxy on **port 30003** with `fallback: pass_through`.
+# If you start more than one `earendil` daemon on the same machine, you must specify this field in all but one of the daemon configs.
+# This prevents additional daemons from trying to listen on the same port and crashing.
 socks5:
   # localhost address where the earendil Socks5 proxy listens
   listen: 127.0.0.1:23456
@@ -106,7 +117,7 @@ relay_config:
         sosistab3: snake-before-antenna-toward-floor-stuff-frozen-power-avocado-retire-grunt-nation
       # TCP port this in_route listens at
       listen: 0.0.0.0:19999
-      # price config for this route, in nanoMELs
+      # price config for this route, in µMELs
       price_config:
         inbound_price: 5
         inbound_debt_limit: 50000

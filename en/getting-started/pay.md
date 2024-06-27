@@ -11,15 +11,15 @@ Two neighbors agree **out-of-band** on a price and debt limit for sending packet
 ```yaml
 # every in_route and out_route has a price_config
 price_config:
-  # how much you charge per incoming packet, in nanoMELs
+  # how much you charge per incoming packet, in µMELs
   inbound_price: 5
-  # debt limit for inbound packets, in nanoMELs
+  # debt limit for inbound packets, in µMELs
   inbound_debt_limit: 50000
-  # max price you're willing to pay per outgoing packet, in nanoMELs
+  # max price you're willing to pay per outgoing packet, in µMELs
   # this field prevents your neighbor from charging you more than the agreed amount
   outbound_max_price: 10
-  # min debt limit you accept for outbound packets, in nanoMELs
-  # negative debt limit = requires prepayment
+  # min debt limit you accept for outbound packets, in µMELs
+  # negative debt limit means prepayment is required
   # this field prevents your neighbor from charging you a prepayment larger than the agreed amount
   outbound_min_debt_limit: -100
 ```
@@ -50,13 +50,15 @@ This means Alice charges 1 µMEL for every packet Bob sends her, Bob can owe ali
 
 A node specifies all the payment methods they support in the `payment_methods` section of their config file. If two neighbors don't share any supported payment methods in common, they won't be able to connect (unless they both charge a price of 0).
 
-We currently support 2 payment methods: on-chain payments on the Mel blockchain and proof-of-work.
+We currently support 2 payment methods: on-chain payments on the Mel blockchain and proof-of-work (PoW).
 
 ```yaml
 payment_methods:
   on_chain:
     secret: <your-mel-wallet-secret>
-  pow # no arguments required to support PoW payments
+  # no arguments required to support PoW payments
+  # don't forget the trailing colon!
+  pow:
 ```
 
 The `secret` field for `on_chain` is the secret key of the Mel wallet you'll use to send and receive payments. [Here's](https://docs.melproject.org/developer-guides/using-wallets) how to set up a Mel wallet. You can export the secret key from an existing wallet using:
@@ -88,6 +90,10 @@ example-relay-paid:
     inbound_debt_limit: 1000
     outbound_max_price: 0
     outbound_min_debt_limit: 0
+
+# don't forget to specify payment_methods you support
+payment_methods:
+  pow:
 ```
 
 To learn more about Earendil's incentive system, read [this post](https://nullchinchilla.me/2023/07/earendil-incentives/).
