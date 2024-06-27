@@ -2,7 +2,7 @@
 
 We currently only support running relays using the CLI version. Relays should be run on machines with public IP addresses.
 
-Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have an `in-routes` section that specifies where and how to accept incoming connections, while client configs do not.
+Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have a `relay_config` section that specifies `identity_file` (to store the relay's long-term identity) and `in_routes` (where and how to accept incoming connections), while client configs do not.
 
 To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sure to replace "/your/path/` with an appropriate path:
 
@@ -20,21 +20,27 @@ out_routes:
       outbound_max_price: 0
       outbound_min_debt_limit: 0
 
-# relay settings
+# relay-only settings
 relay_config:
-  identity_file: /your/path/earendil-relay-id.secret # replace with a writable path for storing identity secret
+  # replace with a writable path for storing identity secret
+  identity_file: /your/path/earendil-relay-id.secret
 
   in_routes:
     main_udp:
       obfs:
-        sosistab3: <your_random_seed> # random seed for obfsudp cookie. Generate your own with `earendil generate-seed`
-      listen: 0.0.0.0:19999 # port where this in-route listens
+        # random seed for obfsudp cookie. Generate your own with `earendil generate-seed`
+        sosistab3: <your_random_seed>
+      # port where this in-route listens
+      listen: 0.0.0.0:19999
+      # price, debt limit etc. for this in-route
       price_config:
         inbound_price: 0
         inbound_debt_limit: 0
         outbound_max_price: 0
         outbound_min_debt_limit: 0
 ```
+
+You can learn about paying and getting paid on the Earendil network, as well as the `price_config` [here](pay.md).
 
 Start the `earendil` daemon using this relay config:
 
@@ -66,5 +72,5 @@ main_udp:
 Replace `<YOUR_IP>` with your server's public IP address. Other nodes (both clients and relays) can simply paste this block into the `out_routes` section of their config file to add your relay as a neighbor.
 
 {% hint style="warning" %}
-To serve users in regions with internet censorship, you should _avoid_ posting your relay's contact information publicly. Instead, distribute it in a way that reaches legitimate users but not censors--your relay will be blacklisted if the censor learns its IP address.
+To serve users in regions with internet censorship, you should _avoid_ posting your relay's contact information publicly. Instead, distribute it in a way that reaches legitimate users but not censors--your relay will be blacklisted if the censor learns its IP address!
 {% endhint %}

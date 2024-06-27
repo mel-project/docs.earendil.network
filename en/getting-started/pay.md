@@ -6,7 +6,7 @@ This creates a free market for bandwidth --- if one neighbor is too expensive or
 
 ## Price & debt limit
 
-Two neighbors agree on a price and debt limit for sending packets when they first connect to each other. They do so in the `price_config` section of the `in_route` or `out_route` block:
+Two neighbors agree **out-of-band** on a price and debt limit for sending packets when they first connect to each other. They then specify this information in the `price_config` section of the `in_route` or `out_route` block:
 
 ```yaml
 # every in_route and out_route has a price_config
@@ -16,9 +16,11 @@ price_config:
   # debt limit for inbound packets, in nanoMELs
   inbound_debt_limit: 50000
   # max price you're willing to pay per outgoing packet, in nanoMELs
+  # this field prevents your neighbor from charging you more than the agreed amount
   outbound_max_price: 10
   # min debt limit you accept for outbound packets, in nanoMELs
-  # Negative debt limit = requires prepayment
+  # negative debt limit = requires prepayment
+  # this field prevents your neighbor from charging you a prepayment larger than the agreed amount
   outbound_min_debt_limit: -100
 ```
 
@@ -26,8 +28,8 @@ As an example, say we have relay Alice and client Bob. Alice has this `price_con
 
 ```yaml
 price_config:
-  inbound_price: 5
-  inbound_debt_limit: 50000
+  inbound_price: 1
+  inbound_debt_limit: 5000
   outbound_max_price: 0
   outbound_min_debt_limit: 0
 ```
@@ -42,11 +44,11 @@ price_config:
   outbound_min_debt_limit: -100
 ```
 
-This means Alice charges 5 nMELs for every packet Bob sends her, Bob can owe alice at most 50,000 nMELs before she disconnects from him, and Alice does not pay Bob anything to send packets to him.
+This means Alice charges 1 µMEL for every packet Bob sends her, Bob can owe alice at most 5,000 µMELs before she disconnects from him, and Alice does not pay Bob anything to send packets to him.
 
 ## Payment methods
 
-A node specifies all the payment methods they support in the `payment_methods` section of their config file. If two neighbors don't share any supported payment methods in common, they won't be able to connect (unless both of then charge a price of 0).
+A node specifies all the payment methods they support in the `payment_methods` section of their config file. If two neighbors don't share any supported payment methods in common, they won't be able to connect (unless they both charge a price of 0).
 
 We currently support 2 payment methods: on-chain payments on the Mel blockchain and proof-of-work.
 
@@ -73,6 +75,19 @@ payment_methods:
 
 ## Testing payments
 
-Todo!
+The default bootstrap node we've been using throughout the tutorials is entirely free. To test payments, use this node that supports both on-chain and PoW payments:
+
+```yaml
+example-relay-paid:
+  connect: 172.233.162.12:19998
+  fingerprint: 14154070117b3c1a71fa2fc6bc7d20e5afc93fbe98a13b86b013d0a91215f74f
+  obfs:
+    sosistab3: correct-horse-battery-pink-staple-pasta-apple
+  price_config:
+    inbound_price: 0.5
+    inbound_debt_limit: 1000
+    outbound_max_price: 0
+    outbound_min_debt_limit: 0
+```
 
 To learn more about Earendil's incentive system, read [this post](https://nullchinchilla.me/2023/07/earendil-incentives/).
