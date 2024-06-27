@@ -12,22 +12,34 @@ All of `earendil`'s configuration options are specified in a YAML config file, l
 
 ![](../.gitbook/assets/gui-settings.png)
 
-Paste this config file into your Settings tab. Be sure to replace "/your/path/` with an appropriate path:
+Paste this config file into your Settings tab:
 
 ```yaml
-state_cache: /your/path/.cache/earendil # where to store persistent information. Must be absolute path
-
-out_routes: # relays to connect to
-  example-relay: # arbitrary name for this relay
-    connect: 45.33.109.28:12345 # IP and port where the relay is listening
-    fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # relay's long-term identity
-    obfs: # obfuscation protocol to use
-      sosistab3: "randomly-generated-cookie-lala-doodoo" # obfuscation secret, generated and provided by the relay
+# relays to connect to
+out_routes:
+  # arbitrary name for this relay
+  example-relay-free:
+    # IP and port where the relay is listening
+    connect: 45.33.109.28:12345
+    # relay's long-term identity
+    fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
+    # obfuscation protocol to use
+    obfs:
+      # obfuscation secret, generated and provided by the relay
+      sosistab3: "randomly-generated-cookie-lala-doodoo"
+    # price and debt configuration; setting to 0 disables payments
+    price_config:
+      inbound_price: 0
+      inbound_debt_limit: 0
+      outbound_max_price: 0
+      outbound_min_debt_limit: 0
 
 socks5:
-  listen: 127.0.0.1:23456 # localhost port where the proxy server listens
+  # localhost addr where the proxy server listens
+  listen: 127.0.0.1:23456
   fallback:
-    simple_proxy: # proxy server for all clearnet traffic
+    # proxy for all clearnet traffic
+    simple_proxy:
       remote: v5k6rydpg9yh9hft6c7qwz9sm3z99ytt:23456
 ```
 

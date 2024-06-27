@@ -8,9 +8,14 @@
 - [Quick start](getting-started/quick-start.md)
 - [Host a web proxy](getting-started/host-proxy.md)
 - [Visit and host havens](getting-started/havens.md)
-- [Chat](getting-started/link-chat.md)
+- [Chat](getting-started/chat.md)
 - [Run a relay](getting-started/run-relay.md)
+- [Pay and get paid](getting-started/pay.md)
 - [Config file](getting-started/config.md)
+
+## FAQ
+
+- [1+ nodes on 1 machine](faq/many-nodes-same-machine.md)
 
 ## 📖 wiki
 
