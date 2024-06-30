@@ -4,6 +4,8 @@ In the Earendil network, nodes pay and get paid by their _immediate neighbors_.
 
 This creates a free market for bandwidth --- if one neighbor is too expensive or unreliable, simply disconnect from them and find a cheaper or more reliable provider. Once you pay your neighbor, it's their responsibility to route your packets to their destinations. This is just like using the internet: you pay your ISP (like T-Mobile) and don't worry about the rest.
 
+To learn more about Earendil's incentive system, read [this post](https://nullchinchilla.me/2023/07/earendil-incentives/).
+
 ## Price & debt limit
 
 Two neighbors agree **out-of-band** on a price and debt limit for sending packets when they first connect to each other. They then specify this information in the `price_config` section of the `in_route` or `out_route` block:
@@ -11,14 +13,14 @@ Two neighbors agree **out-of-band** on a price and debt limit for sending packet
 ```yaml
 # every in_route and out_route has a price_config
 price_config:
-  # how much you charge per incoming packet, in µMELs
+  # how much you charge per incoming packet, in µMEL
   inbound_price: 5
-  # debt limit for inbound packets, in µMELs
+  # debt limit for inbound packets, in µMEL
   inbound_debt_limit: 50000
-  # max price you're willing to pay per outgoing packet, in µMELs
+  # max price you're willing to pay per outgoing packet, in µMEL
   # this field prevents your neighbor from charging you more than the agreed amount
   outbound_max_price: 10
-  # min debt limit you accept for outbound packets, in µMELs
+  # min debt limit you accept for outbound packets, in µMEL
   # negative debt limit means prepayment is required
   # this field prevents your neighbor from charging you a prepayment larger than the agreed amount
   outbound_min_debt_limit: -100
@@ -95,5 +97,3 @@ example-relay-paid:
 payment_methods:
   pow:
 ```
-
-To learn more about Earendil's incentive system, read [this post](https://nullchinchilla.me/2023/07/earendil-incentives/).
