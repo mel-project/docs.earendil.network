@@ -54,11 +54,9 @@ We currently support 2 payment methods: on-chain payments on the Mel blockchain 
 
 ```yaml
 payment_methods:
-  on_chain:
-    secret: <your-mel-wallet-secret>
+  - on_chain: <your-mel-wallet-secret>
   # no arguments required to support PoW payments
-  # don't forget the trailing colon!
-  pow:
+  - pow
 ```
 
 The `secret` field for `on_chain` is the secret key of the Mel wallet you'll use to send and receive payments. [Here's](https://docs.melproject.org/developer-guides/using-wallets) how to set up a Mel wallet. You can export the secret key from an existing wallet using:
@@ -71,8 +69,7 @@ As an example, this config means that your node only accepts on-chain payments:
 
 ```yaml
 payment_methods:
-  on_chain:
-    secret: <your-mel-wallet-secret>
+  - on_chain: <your-mel-wallet-secret>
 ```
 
 ## Testing payments
@@ -81,19 +78,19 @@ The default bootstrap node we've been using throughout the tutorials is entirely
 
 ```yaml
 example-relay-paid:
-  connect: 172.233.162.12:19998
+  connect: 62.210.93.59:19999
   fingerprint: 14154070117b3c1a71fa2fc6bc7d20e5afc93fbe98a13b86b013d0a91215f74f
   obfs:
     sosistab3: correct-horse-battery-pink-staple-pasta-apple
   price_config:
-    inbound_price: 0.5
-    inbound_debt_limit: 1000
-    outbound_max_price: 0
-    outbound_min_debt_limit: 0
+    inbound_debt_limit: 0.0
+    inbound_price: 0.0 # do not set a price > 0; our example payments server will not pay!
+    outbound_max_price: 1
+    outbound_min_debt_limit: 0.0
 
 # don't forget to specify payment_methods you support
 payment_methods:
-  pow:
+  - pow
 ```
 
 To learn more about Earendil's incentive system, read [this post](https://nullchinchilla.me/2023/07/earendil-incentives/).
