@@ -56,11 +56,10 @@ price_config:
 
 ```yaml
 payment_methods:
-  on_chain:
+  - on_chain:
     secret: <your-mel-wallet-secret>
-  # 支持 PoW 支付不需要参数
-  # 别忘了最后的冒号！
-  pow:
+  # PoW 支付不需要参数
+  - pow
 ```
 
 `on_chain`的`secret`字段是你将用来发送和接收支付的 Mel 钱包的密钥。[这里](https://docs.melproject.org/developer-guides/using-wallets)有如何设置 Mel 钱包的指南。你可以使用以下命令从现有钱包中导出密钥：

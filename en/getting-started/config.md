@@ -50,12 +50,10 @@ out_routes:
 
 # -------------------- payments + Mel blockchain access -----------------------
 payment_methods:
-  on_chain:
-    # secret of melwallet to use for sending + receiving payments
-    secret: <your-mel-wallet-secret>
   # no arguments required to support PoW payments
-  # trailing colon necessary!
-  pow:
+  - pow
+  - on_chain: <your-mel-wallet-secret> # secret of melwallet to use for sending + receiving payments
+
 # [optional] how to connect to the Mel blockchain, can be Earendil haven address
 # If this key is not specified, then we connect to the Mel blockchain using the default bootstrap node over clearnet. This may not work in countries with internet censorship.
 mel_bootstrap: <address-to-melnode>

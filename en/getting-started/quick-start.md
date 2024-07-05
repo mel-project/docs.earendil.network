@@ -20,13 +20,13 @@ out_routes:
   # arbitrary name for this relay
   example-relay-free:
     # IP and port where the relay is listening
-    connect: 45.33.109.28:12345
+    connect: 62.210.93.59:12345
     # relay's long-term identity
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     # obfuscation protocol to use
     obfs:
       # obfuscation secret, generated and provided by the relay
-      sosistab3: "randomly-generated-cookie-lala-doodoo"
+      sosistab3: randomly-generated-cookie-lala-doodoo
     # price and debt configuration; setting to 0 disables payments
     price_config:
       inbound_price: 0

@@ -19,7 +19,7 @@ state_cache: /your/path/.cache/earendil # 存储持久信息的位置。必须�
 
 out_routes: # 要连接的中继
   example-relay: # 此中继的任意名称
-    connect: 45.33.109.28:12345 # 中继监听的 IP 和端口
+    connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
     obfs: # 使用的混淆协议
       sosistab3: "randomly-generated-cookie-lala-doodoo" # 混淆秘密，由中继生成并提供
@@ -40,6 +40,7 @@ socks5:
 Earendil 已经连接好了！
 
 ## 连接您的浏览器
+
 现在，设置您的浏览器使用我们的 Earendil SOCKS5 代理（位于 `localhost:23456`）作为 SOCKS5 代理。Firefox 的配置如下所示：
 
 ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
