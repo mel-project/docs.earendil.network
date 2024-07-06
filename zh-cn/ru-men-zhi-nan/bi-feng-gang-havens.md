@@ -12,7 +12,7 @@
 state_cache: /your/path/.cache/earendil # 用于存储持久信息的位置。必须是绝对路径
 out_routes: # 要连接的中继
   example-relay: # 此中继的任意名称
-    connect: 45.33.109.28:12345 # 中继监听的 IP 和端口
+    connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
     obfs: # 使用的混淆协议
       sosistab3: "randomly-generated-cookie-lala-doodoo" # 中继随机生成的混淆密钥
@@ -28,9 +28,9 @@ socks5:
 
 尝试访问：
 
-  ```!
-  http://t90bt94h01ezd75zv9rtzam60thnbkvz.haven:12345
-  ```
+```!
+http://t90bt94h01ezd75zv9rtzam60thnbkvz.haven:12345
+```
 
 就像访问任何普通网站一样。您应该会看到：
 
@@ -77,7 +77,7 @@ state_cache: /your/path/.cache/earendil # 用于存储持久信息的位置。�
 
 out_routes: # 要连接的中继
   example-relay: # 此中继的任意名称
-    connect: 45.33.109.28:12345 # 中继监听的 IP 和端口
+    connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
     obfs: # 使用的混淆协议
       sosistab3: "randomly-generated-cookie-lala-doodoo" # 中继随机生成的混淆密钥
@@ -92,9 +92,9 @@ havens:
       upstream: 127.0.0.1:8000 # 网页服务器监听的位置
 ```
 
-* `identity_file`：一个可写入的路径，用于存储您的避风港的身份秘钥。
-* `rendezvous` 是您选择的**会合中继**的指纹。这是一个中继节点，负责接收和转发所有意图传送给您的避风港的消息，以便您的 IP 地址对避风港的客户端保持私密。所有避风港都必须有一个会合中继；您可以在[这里](https://docs.earendil.network/wiki/protocols/haven-protocol)阅读更多关于避风港协议架构的信息。在这个示例中，我们将使用我们在本教程中一直使用的同一个测试中继。
-* `handler` 指定如何处理流向避风港的流量。这里，我们使用 TCP [端口转发](https://en.wikipedia.org/wiki/Port_forwarding)将所有避风港流量转发到端口 8000 上的网页服务器。
+- `identity_file`：一个可写入的路径，用于存储您的避风港的身份秘钥。
+- `rendezvous` 是您选择的**会合中继**的指纹。这是一个中继节点，负责接收和转发所有意图传送给您的避风港的消息，以便您的 IP 地址对避风港的客户端保持私密。所有避风港都必须有一个会合中继；您可以在[这里](https://docs.earendil.network/wiki/protocols/haven-protocol)阅读更多关于避风港协议架构的信息。在这个示例中，我们将使用我们在本教程中一直使用的同一个测试中继。
+- `handler` 指定如何处理流向避风港的流量。这里，我们使用 TCP [端口转发](https://en.wikipedia.org/wiki/Port_forwarding)将所有避风港流量转发到端口 8000 上的网页服务器。
 
 启动 Earendil，并在“Dashboard”标签中找到您的避风港地址：
 
@@ -102,6 +102,7 @@ havens:
 
 {% hint style="info" %}
 在 CLI 版本中，您可以使用以下命令获取您的避风港地址：
+
 ```shell-session
 earendil control havens-info
 ```
@@ -111,6 +112,7 @@ earendil control havens-info
 ```
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
+
 {% endhint %}
 
 在我们的示例中，`qcmnt2mbchhanm7fzacybswzknbsw3zp` 是您避风港的**指纹**，而 `12345` 是它的**端口号**（类似于 TCP 端口号）。

@@ -21,7 +21,7 @@ control_listen: 127.0.0.1:11111
 out_routes:
   example-relay:
     # 中继监听传入连接的 IP 地址和端口
-    connect: 45.33.109.28:12345
+    connect: 62.210.93.59:12345
     # 中继的长期身份
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     # 使用的混淆协议，用于抵抗 ISP 级别的审查

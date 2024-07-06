@@ -57,7 +57,7 @@ To browse the web through Earendil, we need to configure a web browser to use ou
 
 ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
 
-Visit any website as you normally would, except now all your traffic is going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `45.33.109.28`. That's the IP address of this tutorial's bootstrap node.
+Visit any website as you normally would, except now all your traffic is going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `62.210.93.59`. That's the IP address of this tutorial's bootstrap node.
 
 Now you can use Earendil as a web proxy to browse the internet anonymously! Feel free to share [speed tests](https://speed.cloudflare.com/) in our [Discord](https://discord.gg/AVsGbhzTzx).
 

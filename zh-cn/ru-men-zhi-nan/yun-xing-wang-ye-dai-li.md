@@ -11,31 +11,32 @@ Earendil 客户端和中继节点均可运营网页代理。当您托管一个 E
 
 这意味着，使用您架设的代理的用户可以做很多「坏事」，比如：
 
-* 访问本地网络资源，包括 localhost 上的资源
-* 无节制地消耗您的带宽
-* 发送垃圾邮件，并可能导致您的 IP 地址被您的互联网服务提供商封锁
+- 访问本地网络资源，包括 localhost 上的资源
+- 无节制地消耗您的带宽
+- 发送垃圾邮件，并可能导致您的 IP 地址被您的互联网服务提供商封锁
 
 因此，除非您确切知道自己在做什么，否则目前**不建议通过 Earendil 设置公共网页代理**。
 
-未来，我们将添加对用户身份验证和流量过滤的支持，这将使运行公共 simple\_proxy 服务变得更加可行。
+未来，我们将添加对用户身份验证和流量过滤的支持，这将使运行公共 simple_proxy 服务变得更加可行。
 {% endhint %}
 
 要托管网页代理，请将此配置文件粘贴到您的 Earendil 图形界面的 "Settings" 标签中。请确保将 "/your/path/" 替换为适当的路径：
+
 ```yaml
 state_cache: /your/path/.cache/earendil # 存储持久信息的位置。必须是绝对路径
 out_routes: # 要连接的中继
   example-relay: # 此中继的任意名称
-    connect: 45.33.109.28:12345 # 中继监听的 IP 和端口
+    connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
     obfs: # 使用的混淆协议
       sosistab3: "randomly-generated-cookie-lala-doodoo" # 混淆秘密，由中继随机生成
 
 havens: # 我们托管的避风港
-    - identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
-      listen_port: 19999 # 代理服务器监听的端口
-      rendezvous: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 选择作为洋葱路由会合点的中继
-      handler:
-        type: simple_proxy # Earendil 的网页代理协议
+  - identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
+    listen_port: 19999 # 代理服务器监听的端口
+    rendezvous: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 选择作为洋葱路由会合点的中继
+    handler:
+      type: simple_proxy # Earendil 的网页代理协议
 ```
 
 请注意，托管网页代理必然会暴露您的 IP 地址，因为客户可以连接到您的代理并访问 IP 检查网站。
@@ -52,6 +53,6 @@ havens: # 我们托管的避风港
 socks5:
   listen: 127.0.0.1:23456
   fallback:
-    simple_proxy: 
+    simple_proxy:
       remote: <您的代理指纹>:19999
 ```

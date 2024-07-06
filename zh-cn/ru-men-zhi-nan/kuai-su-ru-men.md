@@ -45,7 +45,7 @@ Earendil 已经连接好了！
 
 ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
 
-像平时一样访问任何网站，只是现在您的所有流量都在通过 Earendil 了！您可以通过[检查](https://bgp.he.net/)您的 IP 地址来确认这一点：如果 IP 地址是 `45.33.109.28`，说明您已正确连接。
+像平时一样访问任何网站，只是现在您的所有流量都在通过 Earendil 了！您可以通过[检查](https://bgp.he.net/)您的 IP 地址来确认这一点：如果 IP 地址是 `62.210.93.59`，说明您已正确连接。
 
 现在您可以使用 Earendil 作为网络代理匿名浏览互联网了！欢迎在我们的 [Discord](https://discord.gg/AVsGbhzTzx) 中分享[速度测试](https://speed.cloudflare.com/)。
 

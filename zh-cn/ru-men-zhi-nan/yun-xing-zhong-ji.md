@@ -12,18 +12,18 @@ state_cache: /your/path/.cache/earendil # 存储持久信息的位置。必须�
 
 # 邻居，与客户端配置相同
 out_routes:
-  example-relay: 
-    connect: 45.33.109.28:12345 
-    fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a  
+  example-relay:
+    connect: 62.210.93.59:12345
+    fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     obfs:
-      sosistab3: "randomly-generated-cookie-lala-doodoo" 
+      sosistab3: "randomly-generated-cookie-lala-doodoo"
 
 # 中继设置
 identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
 
 in_routes:
   main_udp:
-    obfs: 
+    obfs:
       sosistab3: <your_random_seed> # obfsudp cookie 的随机种子。使用 `earendil generate-seed` 生成您自己的种子
     listen: 0.0.0.0:19999 # 此入口路线监听的端口
 ```
