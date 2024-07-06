@@ -9,9 +9,9 @@ Both client and relay Earendil nodes can host web proxies. When you host an Eare
 
 Currently, there is no support for authenticating proxy users or filtering traffic through the web proxy you host. This means, among other things, that users of your proxy can:
 
-- Access local network resources, including on `localhost`&#x20;
-- Waste your bandwidth indiscriminately
-- Send email spam and get your IP address blocked by your ISP
+* Access local network resources, including on `localhost`
+* Waste your bandwidth indiscriminately
+* Send email spam and get your IP address blocked by your ISP
 
 Thus, it's currently **not** recommended to set up public web proxies through Earendil unless you are sure of what you're doing.\
 \
@@ -23,7 +23,7 @@ To host a web proxy, paste this config file into the "Settings" tab of your Eare
 ```yaml
 out_routes:
   example-relay-free:
-    connect: 45.33.109.28:12345
+    connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     obfs:
       sosistab3: "randomly-generated-cookie-lala-doodoo"

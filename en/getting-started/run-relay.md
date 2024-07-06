@@ -4,13 +4,13 @@ We currently only support running relays using the CLI version. Relays should be
 
 Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have a `relay_config` section that specifies `identity_file` (to store the relay's long-term identity) and `in_routes` (where and how to accept incoming connections), while client configs do not.
 
-To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sure to replace "/your/path/` with an appropriate path:
+To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sure to replace "/your/path/\` with an appropriate path:
 
 ```yaml
 # neighbors, same as in client config
 out_routes:
   example-relay-free:
-    connect: 45.33.109.28:12345
+    connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     obfs:
       sosistab3: "randomly-generated-cookie-lala-doodoo"

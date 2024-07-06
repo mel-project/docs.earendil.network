@@ -1,4 +1,4 @@
-# Config file reference
+# Config file
 
 Here's a fully annotated config file:
 
@@ -21,7 +21,7 @@ control_listen: 127.0.0.1:11111
 out_routes:
   example-relay:
     # IP address and port where the relay is listening for incoming connections
-    connect: 45.33.109.28:12345
+    connect: 62.210.93.59:12345
     # long-term identity of the relay
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     # obfuscation protocol to use, for resisting ISP-level censorship
