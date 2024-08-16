@@ -20,15 +20,11 @@ out_routes:
       inbound_debt_limit: 0
       outbound_max_price: 0
       outbound_min_debt_limit: 0
-
-socks5:
-  listen: 127.0.0.1:23456
-  fallback: pass_through # let all non-Earendil traffic through as if you're not using Earendil. Requests to `google.com` will behave the same way as if you weren't connected to the Earendil proxy.
 ```
 
-Then, set your browser to use `localhost:23456` as a SOCKS5 proxy. For Firefox this looks like:
+Then, set your browser to use `localhost:30003` as a SOCKS5 proxy. For Firefox this looks like:
 
-![image](https://hackmd.io/\_uploads/SkLZ828Sp.png)
+![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
 
 Try visiting
 
@@ -38,7 +34,7 @@ http://t90bt94h01ezd75zv9rtzam60thnbkvz.haven:12345
 
 like you would any ordinary website. You should be greeted with:
 
-![image](https://hackmd.io/\_uploads/rJMmF3LHT.png)
+![image](https://hackmd.io/_uploads/rJMmF3LHT.png)
 
 You just visited your first Earendil haven! With this setup, you can visit any Earendil haven you know the address to.
 
@@ -99,9 +95,9 @@ havens:
       upstream: 127.0.0.1:8000 # where web server is listening
 ```
 
-* `identity_file`: a writable path for storing your haven's identity secret
-* `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For this example, we’ll use the same test relay that we bootstrapped with throughout this tutorial.
-* `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port\_forwarding) to forward all haven traffic to the web server on port 8000.
+- `identity_file`: a writable path for storing your haven's identity secret
+- `rendezvous` is the fingerprint of your chosen _rendezvous relay_. This is a relay node that is responsible for receiving and forwarding all the messages meant for your haven, so that your IP address can be kept private from clients of your haven. All havens must have a rendezvous relay; you can read more about the haven protocol's architecture [here](https://docs.earendil.network/wiki/protocols/haven-protocol). For this example, we’ll use the same test relay that we bootstrapped with throughout this tutorial.
+- `handler` specifies how to handle traffic to the haven. Here, we use TCP [port forwarding](https://en.wikipedia.org/wiki/Port_forwarding) to forward all haven traffic to the web server on port 8000.
 
 Start Earendil, and find your haven's address in the "Dashboard" tab:
 
@@ -119,6 +115,7 @@ You should see something like:
 ```
 TcpForward - qcmnt2mbchhanm7fzacybswzknbsw3zp:12345
 ```
+
 {% endhint %}
 
 In our example, `qcmnt2mbchhanm7fzacybswzknbsw3zp` is your haven's **fingerprint**, and `12345` is its **dock** number (analogous to TCP port number).

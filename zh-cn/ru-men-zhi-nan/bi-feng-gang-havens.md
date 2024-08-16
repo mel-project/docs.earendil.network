@@ -16,13 +16,9 @@ out_routes: # 要连接的中继
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
     obfs: # 使用的混淆协议
       sosistab3: "randomly-generated-cookie-lala-doodoo" # 中继随机生成的混淆密钥
-
-socks5:
-  listen: 127.0.0.1:23456 # 代理服务器监听的本地端口
-  fallback: pass_through # 让所有非 Earendil 流量通过，就好像您没有使用 Earendil。对 `google.com` 的请求将表现得就像您没有连接到 Earendil 代理一样。
 ```
 
-然后，设置您的浏览器使用 `localhost:23456` 作为 SOCKS5 代理。在 Firefox 里：
+然后，设置您的浏览器使用 `localhost:30003` 作为 SOCKS5 代理。在 Firefox 里：
 
 ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
 

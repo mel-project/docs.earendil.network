@@ -33,17 +33,9 @@ out_routes:
       inbound_debt_limit: 0
       outbound_max_price: 0
       outbound_min_debt_limit: 0
-
-socks5:
-  # localhost addr where the proxy server listens
-  listen: 127.0.0.1:23456
-  fallback:
-    # proxy for all clearnet traffic
-    simple_proxy:
-      remote: v5k6rydpg9yh9hft6c7qwz9sm3z99ytt:23456
 ```
 
-The `socks5` block in the config file exposes a Socks5 proxy server on `localhost:23456` that will proxy traffic through Earendil.
+By default, Earendil exposes a Socks5 proxy server on `localhost:30003` that will proxy traffic through Earendil.
 
 Now, start the daemon by pressing "Start" in the bottom tray. Go to the "Logs" tab, and you should see `earendil`'s logs appearing.
 
@@ -53,7 +45,7 @@ You're all connected on the Earendil side!
 
 ## Connect your browser
 
-To browse the web through Earendil, we need to configure a web browser to use our Earendil SOCKS5 proxy (at `localhost:23456`). For Firefox this looks like:
+To browse the web through Earendil, we need to configure a web browser to use our Earendil SOCKS5 proxy (at `localhost:30003`). For Firefox this looks like:
 
 ![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
 

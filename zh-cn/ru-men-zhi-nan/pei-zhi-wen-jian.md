@@ -72,9 +72,7 @@ socks5:
   # 2) `block`：阻止所有非 Earendil 流量。对 `google.com` 的请求将失败。
   # 3) `simple_proxy`：通过指定的 `simple-proxy` 服务器代理非 Earendil 流量，类似于您使用 Tor 作为网络代理的方式。
   fallback:
-    simple_proxy:
-      # 我们正在使用的简单代理服务器
-      remote: v5k6rydpg9yh9hft6c7qwz9sm3z99ytt:23456
+    simple_proxy: passthrough
 
 # 我们托管的避风港
 havens:

@@ -70,11 +70,9 @@ socks5:
   # how to handle non-Earendil traffic (like a request to tunnel `google.com:443`). There are 3 options:
   # 1) `pass_through`: let all non-Earendil traffic through as if you're not using Earendil. Requests to `google.com` will behave the same way as if you weren't connected to the Earendil proxy.
   # 2) `block`: block all non-Earendil traffic. Requests to `google.com` will fail.
-  # 3) `simple_proxy`: proxy non-Earendil traffic via a specified `simple-proxy` server, similar to how you use Tor as a web proxy.
+  # 3) `simple_proxy`: proxy non-Earendil traffic via a specified exit node, similar to how you use Tor as a web proxy.
   fallback:
-    simple_proxy:
-      # simple proxy server we're using
-      remote: v5k6rydpg9yh9hft6c7qwz9sm3z99ytt:23456
+    simple_proxy: passthrough
 
 # havens we're hosting
 havens:
