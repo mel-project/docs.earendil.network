@@ -4,7 +4,7 @@
 
 在本教程中，我们将展示如何使用 `earendil` 的图形界面（GUI）通过 Earendil 代理网络流量。
 
-如果您尚未安装 GUI，请从[安装部分](./ru-he-an-zhuang.md)进行安装。
+如果您尚未安装 GUI，请从[安装部分](ru-he-an-zhuang.md)进行安装。
 
 ## 配置并启动 Earendil
 
@@ -15,8 +15,6 @@
 将此配置文件粘贴到您的设置标签中。请确保将 "/your/path/" 替换为适当的路径：
 
 ```yaml
-state_cache: /your/path/.cache/earendil # 存储持久信息的位置。必须是绝对路径
-
 out_routes: # 要连接的中继
   example-relay: # 此中继的任意名称
     connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
@@ -37,7 +35,7 @@ Earendil 已经连接好了！
 
 现在，设置您的浏览器使用我们的 Earendil SOCKS5 代理（位于 `localhost:30003`）作为 SOCKS5 代理。Firefox 的配置如下所示：
 
-![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
+![image](https://hackmd.io/\_uploads/SkLZ828Sp.png)
 
 像平时一样访问任何网站，只是现在您的所有流量都在通过 Earendil 了！您可以通过[检查](https://bgp.he.net/)您的 IP 地址来确认这一点：如果 IP 地址是 `62.210.93.59`，说明您已正确连接。
 
