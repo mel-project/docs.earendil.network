@@ -4,7 +4,7 @@
 
 In this tutorial, we'll show you how to proxy web traffic through the Earendil network using the `earendil` GUI.
 
-If you haven't already, **install the GUI** from the [Installation](./installation.md) section.
+If you haven't already, **install the GUI** from the [Installation](installation.md) section.
 
 ## Configure + start Earendil
 
@@ -27,12 +27,6 @@ out_routes:
     obfs:
       # obfuscation secret, generated and provided by the relay
       sosistab3: randomly-generated-cookie-lala-doodoo
-    # price and debt configuration; setting to 0 disables payments
-    price_config:
-      inbound_price: 0
-      inbound_debt_limit: 0
-      outbound_max_price: 0
-      outbound_min_debt_limit: 0
 ```
 
 By default, Earendil exposes a Socks5 proxy server on `localhost:30003` that will proxy traffic through Earendil.
@@ -47,7 +41,7 @@ You're all connected on the Earendil side!
 
 To browse the web through Earendil, we need to configure a web browser to use our Earendil SOCKS5 proxy (at `localhost:30003`). For Firefox this looks like:
 
-![image](https://hackmd.io/_uploads/SkLZ828Sp.png)
+![image](https://hackmd.io/\_uploads/SkLZ828Sp.png)
 
 Visit any website as you normally would, except now all your traffic is going through Earendil! You can confirm this by [checking](https://bgp.he.net/) your IP address: you're properly connected if it's `62.210.93.59`. That's the IP address of this tutorial's bootstrap node.
 
