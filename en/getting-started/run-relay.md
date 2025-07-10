@@ -1,6 +1,6 @@
 # Run a relay
 
-We currently only support running relays using the CLI version. Relays should be run on machines with public IP addresses.
+We currently only support running relays using the CLI version. **Relays should be run on machines with public IP addresses**.
 
 Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have a `relay_config` section that specifies `identity_file` (to store the relay's long-term identity) and `in_routes` (where and how to accept incoming connections), while client configs do not.
 
@@ -14,11 +14,6 @@ out_routes:
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     obfs:
       sosistab3: "randomly-generated-cookie-lala-doodoo"
-    price_config:
-      inbound_price: 0
-      inbound_debt_limit: 0
-      outbound_max_price: 0
-      outbound_min_debt_limit: 0
 
 # relay-only settings
 relay_config:
@@ -32,12 +27,6 @@ relay_config:
         sosistab3: <your_random_seed>
       # port where this in-route listens
       listen: 0.0.0.0:19999
-      # price, debt limit etc. for this in-route
-      price_config:
-        inbound_price: 0
-        inbound_debt_limit: 0
-        outbound_max_price: 0
-        outbound_min_debt_limit: 0
 ```
 
 You can learn about paying and getting paid on the Earendil network, as well as the `price_config` [here](pay.md).

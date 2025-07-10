@@ -13,11 +13,6 @@ out_routes:
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
     obfs:
       sosistab3: "randomly-generated-cookie-lala-doodoo"
-    price_config:
-      inbound_price: 0
-      inbound_debt_limit: 0
-      outbound_max_price: 0
-      outbound_min_debt_limit: 0
 
 exit_config: # you want to be an exit node
   allowed_ports: # destination ports that your exit node will allow; to only allow browsing http and https websites through your proxy, only put 80 and 443 here

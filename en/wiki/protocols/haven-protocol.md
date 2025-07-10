@@ -38,13 +38,13 @@ In this example, Bob is a haven, Rob is the rendezvous relay, and Alice is a cli
 
 There is one RPC method exposed in the global RPC: `alloc_forward` which takes in a signed request from a particular fingerprint and instructs the relay to process forwarding packets to this particular fingerprint. Bob must call this method before any of the following happens:
 
-* Alice sends N2R messages to Rob to a special, well-known dock (**dock number 100002**). The messages are of the format `(bob_endpoint, inner)`. The inner part is separately end-to-end encrypted between Alice and Bob, using the same packet format as the [N2R protocol](n2r-protocol.md), but without the padding and onion encryption.
+* Alice sends N2R messages to Rob to a special, well-known dock (**dock number 100002**). The messages are of the format `(bob_endpoint, inner)`. The inner part is separately end-to-end encrypted between Alice and Bob, using the same packet format as the [N2R protocol](mix-protocol.md), but without the padding and onion encryption.
 * Rob sends to Bob the messages with the inner part verbatim, tagged as `(inner, bob_endpoint)`.
 * Bob sends messages to Alice by sending messages of the format `(inner, alice_endpoint)` to Rob. Rob's internal state is something like a NAT table --- it allows anyone to send messages to Bob, and it allows Bob to send messages to anybody who has talked to Bob, but it refuses to forward any other messages, so it's not an open proxy. Rob identifies "backwards" messages because they are coming from Bob, somebody who has registered forwarding with Rob.
 
 ## Socket abstraction
 
-Similar to sockets in the [N2R protocol](n2r-protocol.md), we have a socket abstraction for haven communication.
+Similar to sockets in the [N2R protocol](mix-protocol.md), we have a socket abstraction for haven communication.
 
 Both havens and clients who wish to talk to havens use the same protocol:
 

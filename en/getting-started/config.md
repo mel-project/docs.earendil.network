@@ -30,17 +30,6 @@ out_routes:
     # - `sosistab3`: a TCP-based obfuscated transport with a symmetric cookie, defined by the relay. This obfuscation protocol is developed as a part of [geph5](https://github.com/geph-official/geph5)
     obfs:
       sosistab3: shove-mistake-wish-endless-antique-citizen-filter-employ-cigar-clip-acid-defense
-    # price and debt config for this link
-    price_config:
-      # how much you charge per incoming packet, in µMELs
-      inbound_price: 0
-      # debt limit for inbound packets, in µMELs
-      inbound_debt_limit: 0
-      # max price you're willing to pay per outgoing packet, in µMELs
-      outbound_max_price: 10
-      # min debt limit you accept for outbound packets, in µMELs
-      # Negative debt limit means prepayment is required
-      outbound_min_debt_limit: -100
   # more relays to connect to
   relay-2:
     connect: ...
