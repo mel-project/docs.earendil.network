@@ -10,7 +10,7 @@
 
 ```yaml
 state_cache: /your/path/.cache/earendil # 用于存储持久信息的位置。必须是绝对路径
-out_routes: # 要连接的中继
+out_links: # 要连接的中继
   example-relay: # 此中继的任意名称
     connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份
@@ -71,7 +71,7 @@ server {
 ```yaml
 state_cache: /your/path/.cache/earendil # 用于存储持久信息的位置。必须是绝对路径
 
-out_routes: # 要连接的中继
+out_links: # 要连接的中继
   example-relay: # 此中继的任意名称
     connect: 62.210.93.59:12345 # 中继监听的 IP 和端口
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a # 中继的长期身份

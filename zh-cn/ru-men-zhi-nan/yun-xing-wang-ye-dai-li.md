@@ -7,7 +7,7 @@ Earendil 客户端和中继节点均可运营网页代理。当您托管一个 E
 要托管网页代理，请将此配置文件粘贴到您的 Earendil 图形界面的 "Settings" 标签中：
 
 ```yaml
-out_routes:
+out_links:
   example-relay-free:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a

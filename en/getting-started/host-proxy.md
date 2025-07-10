@@ -7,7 +7,7 @@ Both client and relay Earendil nodes can host web proxies. When you host an Eare
 To host a web proxy, paste this config file into the "Settings" tab of your Earendil GUI:
 
 ```yaml
-out_routes:
+out_links:
   example-relay-free:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a

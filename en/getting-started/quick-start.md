@@ -16,7 +16,7 @@ Paste this config file into your Settings tab:
 
 ```yaml
 # relays to connect to
-out_routes:
+out_links:
   # arbitrary name for this relay
   example-relay-free:
     # IP and port where the relay is listening

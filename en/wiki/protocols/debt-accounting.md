@@ -20,7 +20,7 @@ Each sides refuses to peel/relay any packets until the other side has signaled a
 
 `push_price` may be called at any point, with the understanding that the other side may take a while to apply the changes to how debt etc is calculated.
 
-`in_link` and `out_route` in config files specify maximum allowable prices and debt limit ranges.
+`in_link` and `out_link` in config files specify maximum allowable prices and debt limit ranges.
 
 ## Tracking debt
 

@@ -17,8 +17,8 @@ db_path: ./.cache/earendil
 control_listen: 127.0.0.1:11111
 
 # ------------------------ routing config ----------------------------
-# relays to connect to as neighbors. Client configs *must* contain at least one `out_route`; optional for relays.
-out_routes:
+# relays to connect to as neighbors. Client configs *must* contain at least one `out_link`; optional for relays.
+out_links:
   example-relay:
     # IP address and port where the relay is listening for incoming connections
     connect: 62.210.93.59:12345

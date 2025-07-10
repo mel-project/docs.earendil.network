@@ -11,7 +11,7 @@
 state_cache: /your/path/.cache/earendil # 存储持久信息的位置。必须是绝对路径
 
 # 邻居，与客户端配置相同
-out_routes:
+out_links:
   example-relay:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
@@ -50,7 +50,7 @@ main_udp:
     sosistab3: <your_random_seed>
 ```
 
-请将 `<YOUR_IP>` 替换为您服务器的公网 IP 地址。其他节点（客户端和中继都一样）可以地将这个块粘贴到他们的配置文件的 `out_routes` 部分，以添加您的中继作为邻居。
+请将 `<YOUR_IP>` 替换为您服务器的公网 IP 地址。其他节点（客户端和中继都一样）可以地将这个块粘贴到他们的配置文件的 `out_links` 部分，以添加您的中继作为邻居。
 
 {% hint style="warning" %}
 如果您想服务于有着互联网审查地区的用户，请避免公开发布您的中继联系信息。您应使用一种避免让审查者发现中继信息的方式把信息传递给真正的用户——如果审查者了解到您中继的 IP 地址，您的中继会被列入黑名单。

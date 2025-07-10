@@ -12,10 +12,10 @@
 
 ## 价格与债务限额
 
-两个邻居在首次连接时**离线**同意一个发送数据包的价格和债务限额。然后他们在 `in_link` 或 `out_route` 块的 `price_config` 部分中指定这些信息：
+两个邻居在首次连接时**离线**同意一个发送数据包的价格和债务限额。然后他们在 `in_link` 或 `out_link` 块的 `price_config` 部分中指定这些信息：
 
 ```yaml
-# 每个 in_link 和 out_route 都有一个 price_config
+# 每个 in_link 和 out_link 都有一个 price_config
 price_config:
   # 你对每个传入的数据包收取的费用，以 µMEL 为单位
   inbound_price: 5
@@ -40,7 +40,7 @@ price_config:
   outbound_min_debt_limit: 0
 ```
 
-而 Bob 在他连接到 Alice 的`out_route`中有以下 `price_config`：
+而 Bob 在他连接到 Alice 的`out_link`中有以下 `price_config`：
 
 ```yaml
 price_config:

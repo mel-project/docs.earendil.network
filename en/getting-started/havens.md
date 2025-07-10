@@ -9,7 +9,7 @@ This tutorial will teach you how to use and host basic Earendil havens.
 You can access HTTP-based havens right in your browser. Paste the following config file into the "Settings" tab of your Earendil GUI:
 
 ```yaml
-out_routes:
+out_links:
   example-relay-free:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
@@ -68,7 +68,7 @@ server {
 Paste this config file into your Earendil GUI's "Settings" tab:
 
 ```yaml
-out_routes:
+out_links:
   example-relay-free:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a

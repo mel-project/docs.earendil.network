@@ -8,7 +8,7 @@ To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sur
 
 ```yaml
 # neighbors, same as in client config
-out_routes:
+out_links:
   example-relay-free:
     connect: 62.210.93.59:12345
     fingerprint: 4b7a641b77c2d6ceb8b3fecec2b2978dfe81ae045ed9a25ed78b828009c4967a
@@ -58,7 +58,7 @@ main_udp:
     outbound_min_debt_limit: 0
 ```
 
-Replace `<YOUR_IP>` with your server's public IP address. Other nodes (both clients and relays) can simply paste this block into the `out_routes` section of their config file to add your relay as a neighbor.
+Replace `<YOUR_IP>` with your server's public IP address. Other nodes (both clients and relays) can simply paste this block into the `out_links` section of their config file to add your relay as a neighbor.
 
 {% hint style="warning" %}
 To serve users in regions with internet censorship, you should _avoid_ posting your relay's contact information publicly. Instead, distribute it in a way that reaches legitimate users but not censors--your relay will be blacklisted if the censor learns its IP address!
