@@ -106,12 +106,12 @@ relay_config:
   identity_file: /your/path/identity.secret
 
   # 接受传入连接的位置和方式
-  in_routes:
+  in_links:
     main_obfs:
       # 使用的混淆协议，用于抵抗 ISP 级别的审查
       obfs:
         sosistab3: snake-before-antenna-toward-floor-stuff-frozen-power-avocado-retire-grunt-nation
-      # 此 in_route 监听的 TCP 端口
+      # 此 in_link 监听的 TCP 端口
       listen: 0.0.0.0:19999
       # 此路由的价格配置，以 µMEL 为单位
       price_config:
@@ -119,7 +119,7 @@ relay_config:
         inbound_debt_limit: 50000
         outbound_max_price: 0
         outbound_min_debt_limit: 0
-    # 另一个 in_route，无混淆
+    # 另一个 in_link，无混淆
     no_obfs:
       obfs: none
       listen: 0.0.0.0:19998

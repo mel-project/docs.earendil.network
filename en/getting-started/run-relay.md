@@ -2,7 +2,7 @@
 
 We currently only support running relays using the CLI version. **Relays should be run on machines with public IP addresses**.
 
-Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have a `relay_config` section that specifies `identity_file` (to store the relay's long-term identity) and `in_routes` (where and how to accept incoming connections), while client configs do not.
+Relays and clients nodes use the same `earendil` executable. The defining difference is in their config file: relay configs have a `relay_config` section that specifies `identity_file` (to store the relay's long-term identity) and `in_links` (where and how to accept incoming connections), while client configs do not.
 
 To run a relay, save this config file into a file named `relay-cfg.yaml`. Be sure to replace "/your/path/\` with an appropriate path:
 
@@ -20,7 +20,7 @@ relay_config:
   # replace with a writable path for storing identity secret
   identity_file: /your/path/earendil-relay-id.secret
 
-  in_routes:
+  in_links:
     main_udp:
       obfs:
         # random seed for obfsudp cookie. Generate your own with `earendil generate-seed`

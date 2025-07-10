@@ -21,7 +21,7 @@ out_routes:
 # 中继设置
 identity_file: /your/path/identity.secret # 替换为一个可写入的路径用于存储身份秘钥
 
-in_routes:
+in_links:
   main_udp:
     obfs:
       sosistab3: <your_random_seed> # obfsudp cookie 的随机种子。使用 `earendil generate-seed` 生成您自己的种子

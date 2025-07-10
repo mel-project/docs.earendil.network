@@ -12,10 +12,10 @@ To learn more about Earendil's incentive system, read [this post](https://nullch
 
 ## Price & debt limit
 
-Two neighbors agree **out-of-band** on a price and debt limit for sending packets when they first connect to each other. They then specify this information in the `price_config` section of the `in_route` or `out_route` block:
+Two neighbors agree **out-of-band** on a price and debt limit for sending packets when they first connect to each other. They then specify this information in the `price_config` section of the `in_link` or `out_route` block:
 
 ```yaml
-# every in_route and out_route has a price_config
+# every in_link and out_route has a price_config
 price_config:
   # how much you charge per incoming packet, in µMEL
   inbound_price: 5
@@ -30,7 +30,7 @@ price_config:
   outbound_min_debt_limit: -100
 ```
 
-As an example, say we have relay Alice and client Bob. Alice has this `price_config` in her in_route for Bob:
+As an example, say we have relay Alice and client Bob. Alice has this `price_config` in her in_link for Bob:
 
 ```yaml
 price_config:

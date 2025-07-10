@@ -4,7 +4,7 @@ Every connection between relays is bidirectional and symmetric once established.
 
 But how these connections are configured is not symmetric. There is a distinction between accepting a connection from a peer passively, and contacting a peer actively.
 
-This is reflected in the configuration file, where the `in_routes` mapping specifies _ways to accept_ incoming connections, while the `out_routes` mapping specifies _specific outgoing connections_.
+This is reflected in the configuration file, where the `in_links` mapping specifies _ways to accept_ incoming connections, while the `out_routes` mapping specifies _specific outgoing connections_.
 
 {% code title="/etc/earendil/config.yaml" %}
 ```yaml
@@ -12,7 +12,7 @@ identity: /etc/earendil/identity.asc
 state_cache: /etc/earendil/state_cache.db
 
 # listeners for incoming connections
-in_routes:
+in_links:
     main_udp:
         protocol: obfsudp
         listen: 0.0.0.0:19999

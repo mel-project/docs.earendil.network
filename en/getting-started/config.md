@@ -95,12 +95,12 @@ relay_config:
   identity_file: /your/path/identity.secret
 
   # where & how to accept incoming connections
-  in_routes:
+  in_links:
     main_obfs:
       # obfuscation protocol to use, for resisting ISP-level censorship
       obfs:
         sosistab3: snake-before-antenna-toward-floor-stuff-frozen-power-avocado-retire-grunt-nation
-      # TCP port this in_route listens at
+      # TCP port this in_link listens at
       listen: 0.0.0.0:19999
       # price config for this route, in µMELs
       price_config:
@@ -108,7 +108,7 @@ relay_config:
         inbound_debt_limit: 50000
         outbound_max_price: 0
         outbound_min_debt_limit: 0
-    # another in_route, with no obfuscation
+    # another in_link, with no obfuscation
     no_obfs:
       obfs: none
       listen: 0.0.0.0:19998
