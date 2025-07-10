@@ -39,7 +39,3 @@ out_routes:
         tls-fingerprint-seed: helloworld
 ```
 {% endcode %}
-
-{% hint style="info" %}
-Currently, two relays cannot simultaneously specify the other in their `out_routes`. We may change this in the future.
-{% endhint %}
