@@ -4,4 +4,29 @@ Earendil presents a pretty simple interface (basically a virtual IPv6-like netwo
 
 This is illustrated by the following picture. **Note that A->B means A **_**depends**_** on B**, not that A somehow sends data unidirectionally to B!
 
-![](../../.gitbook/assets/protocols.png)
+```mermaid
+flowchart TB
+ subgraph network["Network layer"]
+        socket["Unified socket abstraction"]
+        haven["Haven protocol"]
+        dht["Rendezvous DHT"]
+        forward["Haven forwarding"]
+        rpc["GlobalRPC"]
+        mixnet["Mixnet protocol"]
+        onion["Onion routing"]
+  end
+ subgraph lownet["LowNet"]
+        link["Link transport"]
+  end
+    socket --> haven
+    haven --> dht & forward
+    dht --> rpc
+    forward --> mixnet
+    rpc --> mixnet
+    mixnet --> onion
+    socks["SOCKS5 interface"] --> sosistab["Optionally reliable streams (virta)"]
+    tcp["TCP port forwarding"] --> sosistab
+    sosistab --> socket
+    tun["tun-based VPN interface"] --> socket
+    onion --> link & routegraph[("Route graph")]
+```
