@@ -4,7 +4,7 @@ description: RPC protocol that any node can call any node
 
 # GlobalRPC
 
-GlobalRPC is the primary RPC protocol exposed by all relays, that any node can call. It runs over the node-to-relay protocol (N2R).
+GlobalRPC is the primary RPC protocol exposed by all relays, that any node can call. It runs over the [mixnet protocol](mix-protocol.md).
 
 Like all RPC protocols in Earendil, it is based on JSON-RPC 2.0.
 

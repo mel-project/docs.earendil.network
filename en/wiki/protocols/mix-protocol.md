@@ -1,6 +1,6 @@
-# N2R (node-to-relay) protocol
+# Mixnet protocol
 
-N2R allows communication between any two nodes, _as long as one of them is a relay_.
+The **mixnet** allows communication between any two nodes, _as long as one of them is a relay_. The other party is kept anonymous.
 
 ## Packet format
 
@@ -37,7 +37,7 @@ This picture roughly illustrates the structure of a fully encoded `InnerPacket` 
 
 ## Socket abstraction
 
-The typical interface exposed by N2R is not raw functions for sending and receiving packets. Instead, we use a _socket_ abstraction inspired by UDP. Each socket represents an `Endpoint`, a _local fingerprint:dock pair,_ that can receive and send messages. More specifically:
+The typical interface exposed by the mixnet protocol is not raw functions for sending and receiving packets. Instead, we use a _socket_ abstraction inspired by UDP. Each socket represents an `Endpoint`, a _local fingerprint:dock pair,_ that can receive and send messages. More specifically:
 
 - The user constructs a socket by **binding** to an identity and a dock number.
   - This identity can either be the long-term identity of the node, or a temporary anonymous identity.

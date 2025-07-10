@@ -1,5 +1,9 @@
 # Pay and get paid
 
+{% hint style="warning" %}
+This is a **design document** for an _unimplemented_ feature.
+{% endhint %}
+
 In the Earendil network, nodes pay and get paid by their _immediate neighbors_.
 
 This creates a free market for bandwidth --- if one neighbor is too expensive or unreliable, simply disconnect from them and find a cheaper or more reliable provider. Once you pay your neighbor, it's their responsibility to route your packets to their destinations. This is just like using the internet: you pay your ISP (like T-Mobile) and don't worry about the rest.
